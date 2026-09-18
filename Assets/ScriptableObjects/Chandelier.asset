@@ -17,5 +17,5 @@ MonoBehaviour:
   itemCost: 1000
   toolTip: iiiiiiiiii wannnna swiiiiiiiiinnnnnnnggggggggggggg
   isUpgrade: 0
-  hungerModifier: 0
-  saturationModifier: 0
+  hungerModifier: 1
+  saturationModifier: 1

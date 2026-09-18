@@ -16,12 +16,21 @@ public class ShopItemController : MonoBehaviour
     [SerializeField] TMP_Text itemCost;
     [SerializeField] GameObject toolTip;
 
+    private GameObject playerGO;
+    private Stat hungerStat;
+    private Stat satisfactionStat;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         // Find the money controller
         moneyControllerGO = GameObject.FindWithTag("MoneyController");
         moneyController = moneyControllerGO.GetComponent<MoneyController>();
+
+        // Find the player and their stats
+        playerGO = GameObject.FindWithTag("Player");
+        hungerStat = playerGO.GetComponent<HungerStat>();
+        hungerStat = playerGO.GetComponent<SatisfactionStat>();
     }
 
     /// <summary>
@@ -37,6 +46,10 @@ public class ShopItemController : MonoBehaviour
         }
         else // Adequate money, complete transaction
         {
+            if (shopItem.isUpgrade)
+            {
+                // hungerStat.IncreaseMaxHunger()
+            }
             moneyController.updateMoney(shopItem.itemCost); 
         }
     }

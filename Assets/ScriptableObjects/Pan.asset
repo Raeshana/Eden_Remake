@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: Pan
   itemImage: {fileID: 0}
   itemCost: 25
-  toolTip: Doubles food saturation.
+  toolTip: Increases max hunger by 50.
   isUpgrade: 1
-  hungerModifier: 0
-  saturationModifier: 2
+  hungerModifier: 50
+  saturationModifier: 1
