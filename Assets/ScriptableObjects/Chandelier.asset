@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShopItem
   itemName: Chandelier
   itemImage: {fileID: 0}
-  itemCost: 1000
+  itemCost: 2000
   toolTip: iiiiiiiiii wannnna swiiiiiiiiinnnnnnnggggggggggggg
   isUpgrade: 0
-  hungerModifier: 1
   saturationModifier: 1
+  satisfactionModifier: 50

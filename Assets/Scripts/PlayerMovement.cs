@@ -22,21 +22,21 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Apply player movement
-        Vector3 movement = new Vector3(movementX, 0.0f, movementY);
-        playerRigidbody.linearVelocity = movement * playerSpeed;
+        // // Apply player movement
+        // Vector3 movement = new Vector3(movementX, 0.0f, movementY);
+        // playerRigidbody.linearVelocity = movement * playerSpeed;
 
         // Apply player rotation
         transform.Rotate(Vector3.up * lookVector.x * lookSpeed);
         // transform.Rotate(Vector3.right * lookVector.y * lookSpeed);
     }
 
-    void OnMove(InputValue movementValue)
-    {
-        Vector2 movementVector = movementValue.Get<Vector2>();
-        movementX = movementVector.x; 
-        movementY = movementVector.y;
-    }
+    // void OnMove(InputValue movementValue)
+    // {
+    //     Vector2 movementVector = movementValue.Get<Vector2>();
+    //     movementX = movementVector.x; 
+    //     movementY = movementVector.y;
+    // }
 
     void OnLook(InputValue lookValue)
     {

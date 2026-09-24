@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 69788f4fb6608c74abed2ab039c1ed9c, type: 3}
-  m_Name: Pan
+  m_Name: Bed
   m_EditorClassIdentifier: Assembly-CSharp::ShopItem
-  itemName: Pan
+  itemName: Bed
   itemImage: {fileID: 0}
-  itemCost: 25
-  toolTip: Increases max hunger by 50.
-  isUpgrade: 1
-  saturationModifier: 2
-  satisfactionModifier: 0
+  itemCost: 100
+  toolTip: 
+  isUpgrade: 0
+  saturationModifier: 1
+  satisfactionModifier: 50

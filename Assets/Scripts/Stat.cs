@@ -12,7 +12,7 @@ public class Stat : MonoBehaviour
     [SerializeField] Slider statSlider;
 
     [HideInInspector] [Tooltip("Current stat value")]
-    public float currStat;
+    private float currStat;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void InitializeStat()
@@ -42,10 +42,12 @@ public class Stat : MonoBehaviour
     /// <summary>
     /// Increase current stat by val
     /// </summary>
-    /// <param name="val">Hunger satiated by food</param>
+    /// <param name="val">Value to increase current stat by</param>
     public void IncreaseCurrStat(float val)
     {
         currStat += val;
+        currStat = (currStat > maxStat) ? maxStat : currStat;
+        statSlider.value = currStat;
     }
 
     /// <summary>
@@ -55,5 +57,14 @@ public class Stat : MonoBehaviour
     public void DecreaseStatRate(float newRate)
     {
         statRate = newRate;
+    }
+
+    /// <summary>
+    /// Increases max stat
+    /// </summary>
+    /// <param name="newMaxStat">Value that max stat has increased by</param>
+    public void IncreaseMaxStat(float newMaxStat)
+    {
+        maxStat += newMaxStat;
     }
 }

@@ -19,9 +19,9 @@ public class ShopItem : ScriptableObject
     [Tooltip("Is this item an upgrade? Will be used to change item display")]
     public bool isUpgrade;
 
-    [Tooltip("Multiple by which hunger bar decreases")]
-    public float hungerModifier;
-
     [Tooltip("Multiple by which food saturation increases")]
     public float saturationModifier;
+
+    [Tooltip("Additive by which satisfaction increases")]
+    public float satisfactionModifier;
 }

@@ -6,18 +6,16 @@ public class MoneyController : MonoBehaviour
     [Tooltip("Amount of money the player currently has")]
     public float playerMoney;
 
-    private TMP_Text moneyText;
+    [SerializeField] TMP_Text moneyText;
 
     void Start()
     {
+        // Get moneyC
         // The player starts with $100
         playerMoney = 100;
 
-        // Get reference to money text
-        moneyText = GetComponent<TMP_Text>();
-
         // Set initial money text
-        updateMoney(0);
+        // updateMoney(0);
     }
 
     /// <summary>
@@ -29,5 +27,24 @@ public class MoneyController : MonoBehaviour
     {
         playerMoney = playerMoney - cost;
         moneyText.text = "$" + playerMoney;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="shopItem"></param>
+    /// <returns></returns>
+    public bool buyFromShop(ShopItem shopItem)
+    {
+        if ((playerMoney - shopItem.itemCost) < 0) // Inadequate money, return false
+        {
+            return false;
+        }
+        else // Adequate money, return true
+        {
+            // Calculate remaining player money
+            updateMoney(shopItem.itemCost);
+            return true;
+        }
     }
 }

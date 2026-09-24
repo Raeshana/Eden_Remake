@@ -21,6 +21,7 @@ public class ShopUI : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        // Load shop
         foreach(ShopItem shopItem in shopItems)
         {
             // Create shop item prefab
@@ -47,11 +48,15 @@ public class ShopUI : MonoBehaviour
         toggleShop();
     }
 
+    /// <summary>
+    /// Pauses game when the player opens the shop
+    /// Does not pause timers on stats
+    /// </summary>
     public void toggleShop()
     {
         isPaused = !isPaused;
         shopItemContainer.gameObject.SetActive(isPaused);
-        if (isPaused == true) Time.timeScale = 0f;
-        else Time.timeScale = 1f;
+        if (isPaused == true) Debug.Log("Paused");
+        else Debug.Log("Unpaused");
     }
 }

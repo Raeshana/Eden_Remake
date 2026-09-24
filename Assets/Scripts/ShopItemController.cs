@@ -7,7 +7,7 @@ public class ShopItemController : MonoBehaviour
     [Tooltip("To be dynamically populated in ShopUI script")]
     public ShopItem shopItem;
 
-    private GameObject moneyControllerGO;
+    private GameObject shopControllerGO;
     private MoneyController moneyController;
 
     [Header("Reference the shop item prefab children here")]
@@ -15,6 +15,7 @@ public class ShopItemController : MonoBehaviour
     [SerializeField] Image itemImage;
     [SerializeField] TMP_Text itemCost;
     [SerializeField] GameObject toolTip;
+    [SerializeField] Button itemButton;
 
     private GameObject playerGO;
     private Stat hungerStat;
@@ -24,13 +25,13 @@ public class ShopItemController : MonoBehaviour
     void Start()
     {
         // Find the money controller
-        moneyControllerGO = GameObject.FindWithTag("MoneyController");
-        moneyController = moneyControllerGO.GetComponent<MoneyController>();
+        shopControllerGO = GameObject.FindWithTag("ShopController");
+        moneyController = shopControllerGO.GetComponent<MoneyController>();
 
         // Find the player and their stats
         playerGO = GameObject.FindWithTag("Player");
         hungerStat = playerGO.GetComponent<HungerStat>();
-        hungerStat = playerGO.GetComponent<SatisfactionStat>();
+        satisfactionStat = playerGO.GetComponent<SatisfactionStat>();
     }
 
     /// <summary>
@@ -38,19 +39,26 @@ public class ShopItemController : MonoBehaviour
     /// If they do, subtracts the shop item cost from their money
     /// If they don't, displays error message
     /// </summary>
-    public void purchaseItem()
+    public void purchaseShopItem()
     {
-        if ((moneyController.playerMoney - shopItem.itemCost) < 0) // Inadequate money, error message
+        if (moneyController.buyFromShop(shopItem))
         {
-            Debug.Log("You have inadequate money");
-        }
-        else // Adequate money, complete transaction
-        {
+            // If the item is an upgrade, decrease hunger rate
+            // Otherwise, add satisfaction
             if (shopItem.isUpgrade)
             {
-                // hungerStat.IncreaseMaxHunger()
+                hungerStat.DecreaseStatRate(shopItem.saturationModifier);                    
             }
-            moneyController.updateMoney(shopItem.itemCost); 
+            else 
+            {
+                satisfactionStat.IncreaseCurrStat(shopItem.satisfactionModifier);
+            }
+            // Disable button
+            itemButton.interactable = false; 
+        }
+        else
+        {
+            Debug.Log("You have inadequate money to purchase " + shopItem.name);
         }
     }
 

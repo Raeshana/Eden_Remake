@@ -6,13 +6,4 @@ public class HungerStat : Stat
     {
         InitializeStat();   
     }
-
-    /// <summary>
-    /// Increases max hunger
-    /// </summary>
-    /// <param name="newMaxStat">Value that max hunger has increased by</param>
-    public void IncreaseMaxHunger(float newMaxStat)
-    {
-        maxStat += newMaxStat;
-    }
 }
