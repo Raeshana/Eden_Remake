@@ -7,6 +7,7 @@ TagManager:
   - HungerSlider
   - SatisfactionSlider
   - ShopController
+  - Canvas
   layers:
   - Default
   - TransparentFX
