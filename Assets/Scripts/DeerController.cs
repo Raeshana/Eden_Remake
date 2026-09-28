@@ -15,6 +15,7 @@ public class DeerController : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     private CanvasGroup canvasGroup;
     private Canvas canvas;
     private Vector2 initialPos;
+    private DeerManager deerManager;
 
     // Reference https://youtu.be/BGr-7GZJNXg?si=Kt4KqKq-OAM8VkRn (drag and drop tutorial)
     public void OnPointerDown(PointerEventData eventData)
@@ -83,11 +84,15 @@ public class DeerController : MonoBehaviour, IPointerDownHandler, IPointerUpHand
 
         // Get canvas
         canvas = GameObject.FindWithTag("Canvas").GetComponent<Canvas>();
+
+        // Deer Manager
+        deerManager = GameObject.FindWithTag("DeerManager").GetComponent<DeerManager>();
     }
 
     public void ShootDeer()
     {
         moneyController.updateMoney(-50);
+        deerManager.decreaseNumDeer();
         Destroy(gameObject);
     }
 }

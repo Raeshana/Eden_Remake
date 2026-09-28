@@ -3,7 +3,7 @@ using System.Collections;
 
 public class DeerManager : MonoBehaviour
 {
-    public int numDeer;
+    static public int numDeer;
     [SerializeField] GameObject deerGO; 
     [SerializeField] Transform[] deerTransforms;
 
@@ -30,5 +30,12 @@ public class DeerManager : MonoBehaviour
     {
         yield return new WaitForSeconds(5f);
         Instantiate(deerGO, deerTransforms[Random.Range(0, deerTransforms.Length)]);
+        Debug.Log("Number of deer increased: " + numDeer);
+    }
+
+    public void decreaseNumDeer()
+    {
+        numDeer = numDeer - 1;
+        Debug.Log("Number of deer decreased: " + numDeer);
     }
 }
