@@ -44,7 +44,7 @@ public class ShopUI : MonoBehaviour
         }
 
         // Hide shop when game starts
-        isPaused = true;
+        isPaused = false;
         toggleShop();
     }
 
