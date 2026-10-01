@@ -974,7 +974,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 624309e724c40294a90cf0deac48a3ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  deerManager: {fileID: 1081588501}
 --- !u!1 &759619209
 GameObject:
   m_ObjectHideFlags: 0
@@ -1553,7 +1552,7 @@ GameObject:
   - component: {fileID: 1081588501}
   m_Layer: 5
   m_Name: DeerContainer
-  m_TagString: Untagged
+  m_TagString: DeerManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1592,7 +1591,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8895e784c8bc31c47bbb1aa62b4efe3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  numDeer: 0
   deerGO: {fileID: 8345581644407238102, guid: 05428e8c0d96e1f429035585240129f6, type: 3}
   deerTransforms:
   - {fileID: 2049379465}

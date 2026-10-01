@@ -8,6 +8,7 @@ TagManager:
   - SatisfactionSlider
   - ShopController
   - Canvas
+  - DeerManager
   layers:
   - Default
   - TransparentFX
