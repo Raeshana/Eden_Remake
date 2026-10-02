@@ -34,16 +34,16 @@ public class MoneyController : MonoBehaviour
     /// </summary>
     /// <param name="shopItem"></param>
     /// <returns></returns>
-    public bool buyFromShop(ShopItem shopItem)
+    public bool buyFromShop(float itemCost)
     {
-        if ((playerMoney - shopItem.itemCost) < 0) // Inadequate money, return false
+        if ((playerMoney - itemCost) < 0) // Inadequate money, return false
         {
             return false;
         }
         else // Adequate money, return true
         {
             // Calculate remaining player money
-            updateMoney(shopItem.itemCost);
+            updateMoney(itemCost);
             return true;
         }
     }

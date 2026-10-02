@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: Pan
   itemImage: {fileID: 0}
   itemCost: 25
-  toolTip: Increases max hunger by 50.
+  toolTip: Increases max hunger by 50
   isUpgrade: 1
   saturationModifier: 2
   satisfactionModifier: 0

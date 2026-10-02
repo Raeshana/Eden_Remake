@@ -527,7 +527,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 100, y: 200}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3719784311817061383
@@ -613,8 +613,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4687265831961522009}
-        m_TargetAssemblyTypeName: ShopItemController, Assembly-CSharp
-        m_MethodName: purchaseShopItem
+        m_TargetAssemblyTypeName: ShopSlotController, Assembly-CSharp
+        m_MethodName: purchaseFromShopSlot
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -635,7 +635,7 @@ GameObject:
   - component: {fileID: 1875317512403744018}
   - component: {fileID: 4687265831961522009}
   m_Layer: 5
-  m_Name: ShopItemTemplate
+  m_Name: ShopItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -673,9 +673,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc8bd10fa59536248a0a1f336555ffb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShopItemController
-  shopItem: {fileID: 0}
   itemName: {fileID: 3511178469062590400}
   itemImage: {fileID: 3594146225795283022}
-  itemCost: {fileID: 8745201497183188455}
+  itemCostSlot: {fileID: 8745201497183188455}
   toolTip: {fileID: 2217356556737370277}
   itemButton: {fileID: 7647164495312556968}
+  shopItemPopulated: {fileID: 0}

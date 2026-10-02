@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: Chair
   itemImage: {fileID: 0}
   itemCost: 200
-  toolTip: 
+  toolTip: Also looks pretty comfy
   isUpgrade: 0
   saturationModifier: 1
   satisfactionModifier: 50

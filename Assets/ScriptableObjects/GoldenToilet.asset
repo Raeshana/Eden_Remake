@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: Golden Toilet
   itemImage: {fileID: 0}
   itemCost: 5000
-  toolTip: 
+  toolTip: Flush
   isUpgrade: 0
   saturationModifier: 1
   satisfactionModifier: 50

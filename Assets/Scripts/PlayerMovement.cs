@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Events;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -14,10 +15,27 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float lookVerticalClampMin;
     [SerializeField] private float lookVerticalClampMax;
     
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private ShopController shopController;
+    UnityEvent isShopOpen;
+
+    void Awake()
     {
         playerRigidbody = GetComponent<Rigidbody>();
+
+        // Get reference to shop in scene
+        shopController = GameObject.FindWithTag("ShopController").GetComponent<ShopController>();
+        
+        // // Listen for shop opened event
+        // if (isShopOpen == null)
+        //     isShopOpen = new UnityEvent();
+
+        // isShopOpen.AddListener(shopController.toggleShop);
+    }
+
+    void Start()
+    {
+        //Set Cursor to not be visible
+        Cursor.visible = false;
     }
 
     void FixedUpdate()

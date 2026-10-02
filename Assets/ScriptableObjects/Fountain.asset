@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: Fountain
   itemImage: {fileID: 0}
   itemCost: 10000
-  toolTip: 
+  toolTip: Yay
   isUpgrade: 0
   saturationModifier: 1
   satisfactionModifier: 50

@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: Table
   itemImage: {fileID: 0}
   itemCost: 300
-  toolTip: 
+  toolTip: Now you don't have to eat on the floor!
   isUpgrade: 0
   saturationModifier: 1
   satisfactionModifier: 50

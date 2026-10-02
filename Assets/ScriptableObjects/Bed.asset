@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: Bed
   itemImage: {fileID: 0}
   itemCost: 100
-  toolTip: 
+  toolTip: Looks pretty comfy
   isUpgrade: 0
   saturationModifier: 1
   satisfactionModifier: 50
