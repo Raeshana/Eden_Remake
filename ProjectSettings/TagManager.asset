@@ -9,6 +9,7 @@ TagManager:
   - ShopController
   - Canvas
   - DeerManager
+  - Deer
   layers:
   - Default
   - TransparentFX
