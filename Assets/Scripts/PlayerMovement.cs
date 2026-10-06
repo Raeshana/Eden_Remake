@@ -4,24 +4,16 @@ using UnityEngine.Events;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private Rigidbody playerRigidbody;
-    private float movementX; 
-    private float movementY;
-
-    [SerializeField] private float playerSpeed; 
-    [SerializeField] private float lookSpeed;
-
-    private Vector2 lookVector;
-    [SerializeField] private float lookVerticalClampMin;
-    [SerializeField] private float lookVerticalClampMax;
-    
     private ShopController shopController;
     UnityEvent isShopOpen;
 
+    private float sensitivity = 0.5f;
+    private float yaw = 0f;
+    private float pitch = 0f;
+    private Vector2 lookVector;
+
     void Awake()
     {
-        playerRigidbody = GetComponent<Rigidbody>();
-
         // Get reference to shop in scene
         shopController = GameObject.FindWithTag("ShopController").GetComponent<ShopController>();
         
@@ -32,29 +24,24 @@ public class PlayerMovement : MonoBehaviour
         // isShopOpen.AddListener(shopController.toggleShop);
     }
 
+    /// <summary>
+    /// Rotates camera around player using pitch and yaw
+    /// Ref: https://www.geeksforgeeks.org/c-sharp/camera-control-in-unity/
+    /// </summary>
+    void LateUpdate()
+    {
+        yaw += lookVector.x * sensitivity;
+        pitch -= lookVector.y * sensitivity;
+        pitch = Mathf.Clamp(pitch, -30f, 60f);
+        
+        transform.rotation = Quaternion.Euler(pitch, yaw, 0);
+    }
+
     void Start()
     {
         //Set Cursor to not be visible
         Cursor.visible = false;
     }
-
-    void FixedUpdate()
-    {
-        // // Apply player movement
-        // Vector3 movement = new Vector3(movementX, 0.0f, movementY);
-        // playerRigidbody.linearVelocity = movement * playerSpeed;
-
-        // Apply player rotation
-        transform.Rotate(Vector3.up * lookVector.x * lookSpeed);
-        // transform.Rotate(Vector3.right * lookVector.y * lookSpeed);
-    }
-
-    // void OnMove(InputValue movementValue)
-    // {
-    //     Vector2 movementVector = movementValue.Get<Vector2>();
-    //     movementX = movementVector.x; 
-    //     movementY = movementVector.y;
-    // }
 
     void OnLook(InputValue lookValue)
     {

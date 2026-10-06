@@ -9,6 +9,7 @@ public class Stat : MonoBehaviour
     [Tooltip("Set how many seconds it takes to lose 1 stat")]
     public float statRate;
     [Tooltip("Reference the stat slider here")]
+    [HideInInspector]
     public Slider statSlider;
 
     [HideInInspector] [Tooltip("Current stat value")]
