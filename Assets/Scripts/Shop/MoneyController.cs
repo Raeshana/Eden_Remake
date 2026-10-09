@@ -6,16 +6,19 @@ public class MoneyController : MonoBehaviour
     [Tooltip("Amount of money the player currently has")]
     public float playerMoney;
 
-    [SerializeField] TMP_Text moneyText;
+    private TMP_Text moneyText;
+
+    void Awake()
+    {
+        // get money text box
+        moneyText = GetComponent<TMP_Text>();
+    }
 
     void Start()
     {
         // Get moneyC
         // The player starts with $100
         playerMoney = 100;
-
-        // Set initial money text
-        // updateMoney(0);
     }
 
     /// <summary>
@@ -25,7 +28,7 @@ public class MoneyController : MonoBehaviour
     /// <param name="cost">The amount to reduce current money by</param>
     public void updateMoney(float cost)
     {
-        playerMoney = playerMoney - cost;
+        playerMoney += cost;
         moneyText.text = "$" + playerMoney;
     }
 
@@ -43,7 +46,7 @@ public class MoneyController : MonoBehaviour
         else // Adequate money, return true
         {
             // Calculate remaining player money
-            updateMoney(itemCost);
+            updateMoney(-itemCost);
             return true;
         }
     }

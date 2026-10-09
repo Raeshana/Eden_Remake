@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3402134916424220385}
   - component: {fileID: 4463074010692964168}
   - component: {fileID: 897106849580810932}
+  - component: {fileID: 478342214662165456}
   m_Layer: 7
   m_Name: TanningRack
   m_TagString: TanningRack
@@ -112,3 +113,15 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &478342214662165456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8691252056888673612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c467693a9b8abdb42878e4bb7ba40db2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TanningRackInteractable

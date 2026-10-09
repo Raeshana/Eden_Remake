@@ -25,8 +25,8 @@ public class ShopSlotController : MonoBehaviour
     void Start()
     {
         // Find the money controller
-        shopControllerGO = GameObject.FindWithTag("ShopController");
-        moneyController = shopControllerGO.GetComponent<MoneyController>();
+        // shopControllerGO = GameObject.FindWithTag("ShopController");
+        moneyController = GameObject.FindWithTag("MoneyController").GetComponent<MoneyController>();
 
         // Find the player and their stats
         playerGO = GameObject.FindWithTag("Player");
@@ -71,14 +71,18 @@ public class ShopSlotController : MonoBehaviour
         itemName.text = shopItem.itemName;
         itemImage = shopItem.itemImage;
         itemCostSlot.text = "$" + shopItem.itemCost;
-        toolTip.GetComponentInChildren<TMP_Text>().text = "" + shopItem.toolTip;
-        toggleToolTip(false);
+        // toolTip.GetComponentInChildren<TMP_Text>().text = "" + shopItem.toolTip;
 
         shopItemPopulated = shopItem;
     }
 
-    public void toggleToolTip(bool mode)
+    private void OnMouseEnter()
     {
-        toolTip.gameObject.SetActive(mode);
+        toolTip.gameObject.SetActive(true);
+    }
+
+    private void OnMouseExit()
+    {
+        toolTip.gameObject.SetActive(false);
     }
 }

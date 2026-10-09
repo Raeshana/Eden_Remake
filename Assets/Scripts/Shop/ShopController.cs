@@ -20,8 +20,7 @@ public class ShopController : MonoBehaviour
     private bool isPaused;
     // UnityEvent shopIsOpen;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
         // Find the money controller
         moneyController = GetComponent<MoneyController>();
@@ -45,7 +44,7 @@ public class ShopController : MonoBehaviour
     }
 
     /// <summary>
-    /// Pauses game when the player opens the shop
+    /// Pauses game when the player opens the shop (!)
     /// Does not pause timers on stats
     /// </summary>
     public void toggleShop()

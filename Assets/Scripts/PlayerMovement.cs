@@ -6,6 +6,8 @@ public class PlayerMovement : MonoBehaviour
 {
     private ShopController shopController;
     UnityEvent isShopOpen;
+    public bool isDraggingDeer;
+    public GameObject deerGO;
 
     private float sensitivity = 0.5f;
     private float yaw = 0f;
@@ -17,6 +19,10 @@ public class PlayerMovement : MonoBehaviour
         // Get reference to shop in scene
         shopController = GameObject.FindWithTag("ShopController").GetComponent<ShopController>();
         
+        // Check for if player is dragging deer or not
+        // To check eat/ sell interactions
+        isDraggingDeer = false;
+
         // // Listen for shop opened event
         // if (isShopOpen == null)
         //     isShopOpen = new UnityEvent();
@@ -45,7 +51,15 @@ public class PlayerMovement : MonoBehaviour
 
     void OnLook(InputValue lookValue)
     {
-        lookVector = lookValue.Get<Vector2>(); 
-        // Mathf.Clamp(lookVector.y, lookVerticalClampMin, lookVerticalClampMax); 
+        lookVector = lookValue.Get<Vector2>();
+    }
+
+    void OnInteract(InputValue interactValue)
+    {
+        if (interactValue.isPressed) 
+        {
+            // Debug.Log("Interacting");
+            GetComponentInChildren<Interactable>().canInteract = true;
+        }
     }
 }

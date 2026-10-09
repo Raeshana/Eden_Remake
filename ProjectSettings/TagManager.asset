@@ -10,9 +10,9 @@ TagManager:
   - Canvas
   - DeerManager
   - Deer
-  - DeadDeer
   - Pan
   - TanningRack
+  - MoneyController
   layers:
   - Default
   - TransparentFX
@@ -20,7 +20,7 @@ TagManager:
   - 
   - Water
   - UI
-  - Deer
+  - 
   - Interactables
   - 
   - 
