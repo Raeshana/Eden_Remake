@@ -1,8 +1,9 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class ShopSlotController : MonoBehaviour
+public class ShopSlotController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     private GameObject shopControllerGO;
     private MoneyController moneyController;
@@ -71,18 +72,26 @@ public class ShopSlotController : MonoBehaviour
         itemName.text = shopItem.itemName;
         itemImage = shopItem.itemImage;
         itemCostSlot.text = "$" + shopItem.itemCost;
-        // toolTip.GetComponentInChildren<TMP_Text>().text = "" + shopItem.toolTip;
+        toolTip.GetComponentInChildren<TMP_Text>().text = "" + shopItem.toolTip;
 
         shopItemPopulated = shopItem;
     }
 
-    private void OnMouseEnter()
+    // Ref https://docs.unity3d.com/2019.1/Documentation/ScriptReference/EventSystems.IPointerEnterHandler.html
+    //Detect if the Cursor starts to pass over the GameObject
+    public void OnPointerEnter(PointerEventData pointerEventData)
     {
+        //Output to console the GameObject's name and the following message
+        Debug.Log("Cursor Entering " + name + " GameObject");
         toolTip.gameObject.SetActive(true);
     }
 
-    private void OnMouseExit()
+    // Ref https://docs.unity3d.com/2019.1/Documentation/ScriptReference/EventSystems.IPointerEnterHandler.html
+    //Detect if the Cursor starts to pass over the GameObject
+    public void OnPointerExit(PointerEventData pointerEventData)
     {
+        //Output to console the GameObject's name and the following message
+        Debug.Log("Cursor Entering " + name + " GameObject");
         toolTip.gameObject.SetActive(false);
     }
 }

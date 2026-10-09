@@ -72,6 +72,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ea14a84f1c418474cb55c5834c09f1ea, type: 2}
   - {fileID: 11400000, guid: 7e083d5f4ca019f49bf723b38c9f5ab8, type: 2}
   - {fileID: 11400000, guid: 0a7c47711442c134990a6f13f2353cf1, type: 2}
+  - {fileID: 11400000, guid: 0a7c47711442c134990a6f13f2353cf1, type: 2}
+  - {fileID: 11400000, guid: 0a7c47711442c134990a6f13f2353cf1, type: 2}
+  - {fileID: 11400000, guid: 0a7c47711442c134990a6f13f2353cf1, type: 2}
+  crossHairs: {fileID: 0}
 --- !u!114 &4745596581306788183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85,7 +89,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoneyController
   playerMoney: 100
-  moneyText: {fileID: 0}
 --- !u!1 &2926392320328661148
 GameObject:
   m_ObjectHideFlags: 0

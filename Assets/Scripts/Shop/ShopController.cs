@@ -11,6 +11,8 @@ public class ShopController : MonoBehaviour
     [Tooltip("Insert scriptable objects for all shop items here")]
     [SerializeField] ShopItem[] shopItems;
 
+    [SerializeField] GameObject crossHairs;
+
     private MoneyController moneyController;
     private GameObject playerGO;
     private Stat hungerStat;
@@ -46,12 +48,15 @@ public class ShopController : MonoBehaviour
     /// <summary>
     /// Pauses game when the player opens the shop (!)
     /// Does not pause timers on stats
+    /// Toggles mouse cursor as well
     /// </summary>
     public void toggleShop()
     {
         // Debug.Log("Shop callback called");
         isPaused = !isPaused;
         gameObject.SetActive(isPaused);
+        Cursor.visible = isPaused;
+        crossHairs.SetActive(!isPaused);
         if (isPaused == true) Debug.Log("Paused");
         else Debug.Log("Unpaused");
     }
