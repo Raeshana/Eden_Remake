@@ -13,6 +13,7 @@ TagManager:
   - Pan
   - TanningRack
   - MoneyController
+  - UIText
   layers:
   - Default
   - TransparentFX

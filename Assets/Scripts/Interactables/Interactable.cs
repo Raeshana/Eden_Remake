@@ -13,14 +13,16 @@ public class Interactable : MonoBehaviour
     // Is set in player movement using on interact input system action
     public bool canInteract;
 
-    // [SerializeField] private GameObject uiContainer;
+    [SerializeField] TMP_Text UIText;
 
-    [SerializeField] private TMP_Text crosshairs;
+    // [SerializeField] private TMP_Text crosshairs;
 
     void Awake()
     {
         // uiContainer.SetActive(false);
         canInteract = false;
+        UIText = GameObject.FindWithTag("UIText").GetComponent<TMP_Text>();
+        UIText.text = " ";
     }
 
     // Update is called once per frame
@@ -42,6 +44,7 @@ public class Interactable : MonoBehaviour
             if (interactable != null)
             {
                 interactable.Hover(); 
+                UIText.text = interactable.InteractionText;
 
                 // while player is looking at interactble, interact on pressing 'e'
                 if (canInteract)
@@ -50,6 +53,10 @@ public class Interactable : MonoBehaviour
                     canInteract = false;
                 }
             }   
+        }
+        else
+        {
+            UIText.text = " ";
         }
     }
 }

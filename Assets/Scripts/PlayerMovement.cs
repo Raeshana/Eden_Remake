@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     private ShopController shopController;
     UnityEvent isShopOpen;
     public bool isDraggingDeer;
+    [HideInInspector]
     public GameObject deerGO;
 
     private float sensitivity = 0.5f;

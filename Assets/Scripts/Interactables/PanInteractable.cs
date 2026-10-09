@@ -1,10 +1,12 @@
 using UnityEngine;
 using System.Collections;
+using TMPro;
 
 public class PanInteractable : MonoBehaviour, IInteractable
 {
     private PlayerMovement playerMovement;
     private HungerStat hungerStat;
+    private string text;
 
     void Awake()
     {
@@ -13,12 +15,22 @@ public class PanInteractable : MonoBehaviour, IInteractable
         playerMovement = player.GetComponent<PlayerMovement>();
     }
 
+    public string InteractionText
+    {
+        get { return text; }
+    }
+
     // interactable
     public void Hover()
     {
         if (playerMovement.isDraggingDeer)
         {
             Debug.Log("E to cook deer");
+            text = "E to cook deer";
+        }
+        else
+        {
+            text = " ";
         }
     }
 

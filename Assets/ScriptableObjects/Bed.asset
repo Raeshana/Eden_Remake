@@ -16,6 +16,6 @@ MonoBehaviour:
   itemImage: {fileID: 0}
   itemCost: 100
   toolTip: Looks pretty comfy
-  isUpgrade: 0
+  isUpgrade: 1
   saturationModifier: 1
   satisfactionModifier: 50

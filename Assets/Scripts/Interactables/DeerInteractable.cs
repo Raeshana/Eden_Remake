@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using TMPro;
 
 public class DeerInteractable : MonoBehaviour, IInteractable
 {
@@ -9,6 +10,7 @@ public class DeerInteractable : MonoBehaviour, IInteractable
     private PlayerMovement playerMovement;
     private MoneyController moneyController;
     private HungerStat hungerStat;
+    private string text;
 
     void Awake()
     {
@@ -19,11 +21,32 @@ public class DeerInteractable : MonoBehaviour, IInteractable
 
     }
 
+    public string InteractionText
+    {
+        get { return text; }
+    }
+
     // interactable
     public void Hover()
     {
-        // change crosshairs to red
-        Debug.Log("E to shoot deer");
+        if (!playerMovement.isDraggingDeer)
+        {
+            // change crosshairs to red
+            Debug.Log("E to shoot deer");
+        }
+
+        switch (currentState)
+        {
+            case DeerState.Live:
+                text = "E to shoot deer";
+                break;
+            case DeerState.Dead:
+                text = "E to pick up deer";
+                break;
+            case DeerState.Dragged:
+                text = "You are dragging the deer. E to deselect.";
+                break;
+        }
     }
 
     // interactable

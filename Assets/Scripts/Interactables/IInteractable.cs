@@ -4,6 +4,8 @@ using UnityEngine;
 
 public interface IInteractable
 {
+    string InteractionText { get; }
+    
     void Hover();
 
     // The method executed when the player triggers the interaction

@@ -1,11 +1,13 @@
 using UnityEngine;
 using System.Collections;
+using TMPro;
 
 public class TanningRackInteractable : MonoBehaviour, IInteractable
 {
     private PlayerMovement playerMovement;
     private HungerStat hungerStat;
     private MoneyController moneyController;
+    private string text;
 
     void Awake()
     {
@@ -15,12 +17,22 @@ public class TanningRackInteractable : MonoBehaviour, IInteractable
         moneyController = GameObject.FindWithTag("MoneyController").GetComponent<MoneyController>();
     }
 
+    public string InteractionText
+    {
+        get { return text; }
+    }
+
     // interactable
     public void Hover()
     {
         if (playerMovement.isDraggingDeer)
         {
             Debug.Log("E to sell deer");
+            text = "E to sell deer";
+        }
+        else
+        {
+            text = " ";
         }
     }
 
@@ -39,6 +51,6 @@ public class TanningRackInteractable : MonoBehaviour, IInteractable
         moneyController.updateMoney(50);
         Debug.Log("sold");
         playerMovement.isDraggingDeer = false;
-        Destroy(gameObject); // would no longer exist
+        Destroy(playerMovement.deerGO); // would no longer exist
     }
 }
