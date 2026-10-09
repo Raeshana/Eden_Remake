@@ -29,12 +29,6 @@ public class DeerInteractable : MonoBehaviour, IInteractable
     // interactable
     public void Hover()
     {
-        if (!playerMovement.isDraggingDeer)
-        {
-            // change crosshairs to red
-            Debug.Log("E to shoot deer");
-        }
-
         switch (currentState)
         {
             case DeerState.Live:
@@ -47,6 +41,7 @@ public class DeerInteractable : MonoBehaviour, IInteractable
                 text = "You are dragging the deer. E to deselect.";
                 break;
         }
+        
     }
 
     // interactable

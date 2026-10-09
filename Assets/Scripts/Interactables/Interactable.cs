@@ -11,9 +11,10 @@ public class Interactable : MonoBehaviour
     private RaycastHit hit;
 
     // Is set in player movement using on interact input system action
+    [HideInInspector]
     public bool canInteract;
 
-    [SerializeField] TMP_Text UIText;
+    private TMP_Text UIText;
 
     // [SerializeField] private TMP_Text crosshairs;
 
@@ -43,6 +44,8 @@ public class Interactable : MonoBehaviour
             // communicate to player that they can interact with the hit object
             if (interactable != null)
             {
+                Debug.Log(hit.collider.name);
+
                 interactable.Hover(); 
                 UIText.text = interactable.InteractionText;
 
@@ -56,7 +59,7 @@ public class Interactable : MonoBehaviour
         }
         else
         {
-            UIText.text = " ";
+            // UIText.text = " ";
         }
     }
 }
