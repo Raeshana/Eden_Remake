@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private ShopController shopController;
+    // private ShopController shopController;
     UnityEvent isShopOpen;
     public bool isDraggingDeer;
     [HideInInspector]
@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     void Awake()
     {
         // Get reference to shop in scene
-        shopController = GameObject.FindWithTag("ShopController").GetComponent<ShopController>();
+        // shopController = GameObject.FindWithTag("ShopController").GetComponent<ShopController>();
         
         // Check for if player is dragging deer or not
         // To check eat/ sell interactions

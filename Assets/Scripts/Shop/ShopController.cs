@@ -55,6 +55,7 @@ public class ShopController : MonoBehaviour
         // Debug.Log("Shop callback called");
         isPaused = !isPaused;
         gameObject.SetActive(isPaused);
+        Cursor.lockState = isPaused ? CursorLockMode.None : CursorLockMode.Locked;
         Cursor.visible = isPaused;
         crossHairs.SetActive(!isPaused);
         if (isPaused == true) Debug.Log("Paused");
