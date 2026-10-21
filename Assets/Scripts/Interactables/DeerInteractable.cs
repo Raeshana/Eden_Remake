@@ -73,8 +73,9 @@ public class DeerInteractable : MonoBehaviour, IInteractable
     private IEnumerator ShootDeer()
     {
         yield return new WaitForSeconds(1); 
-        currentState = DeerState.Dead;
         // dying deer animation
+        // sound of shot
+        currentState = DeerState.Dead;
         // decrease total deer
     }
 
@@ -85,8 +86,7 @@ public class DeerInteractable : MonoBehaviour, IInteractable
     /// </summary>
     private void DragDeer()
     {
-        // set deer icon to true
-        // deerIconGO.SetActive(true);
+        // set dragged dear GO to be true
         playerMovement.isDraggingDeer = true;
         playerMovement.deerGO = gameObject;
         currentState = DeerState.Dragged;
