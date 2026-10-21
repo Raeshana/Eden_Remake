@@ -12,6 +12,7 @@ public class PanInteractable : MonoBehaviour, IInteractable
     {
         empty,
         raw,
+        cooking,
         cooked,
     }
 
@@ -33,12 +34,11 @@ public class PanInteractable : MonoBehaviour, IInteractable
 
         // The pan is initially empty
         currState = state.empty;
-        startTimer = false;
     }
 
     void Update()
     {
-        if (startTimer)
+        if (currState == state.cooking)
         {
             elapsed = Time.time - inPanTime;
             if (elapsed >= 3)
@@ -47,7 +47,7 @@ public class PanInteractable : MonoBehaviour, IInteractable
                 // change mesh
                 currState = state.cooked;
                 // Debug.Log(currState);
-                startTimer = false; // reset timer
+                elapsed = 0f; // reset timer
             }    
         }
         else
@@ -66,6 +66,10 @@ public class PanInteractable : MonoBehaviour, IInteractable
 
             case state.raw:
                 CookDeer();
+                break;
+            
+            case state.cooking:
+                text = "The deer is cooking";
                 break;
 
             case state.cooked:
@@ -96,6 +100,10 @@ public class PanInteractable : MonoBehaviour, IInteractable
                 {
                     text = "E to turn on stove";
                 }
+                break;
+
+            case state.cooking:
+                text = "The deer is cooking";
                 break;
 
             case state.cooked:
@@ -143,6 +151,7 @@ public class PanInteractable : MonoBehaviour, IInteractable
     /// If the pan has been in the raw state for more than 3 seconds,
     /// Change the state to cooked
     /// Change mesh to reflect that (player feedback)
+    /// Change state to cooking during those 3 seconds
     /// </summary>
     /// <param name="inPanTime"></param>
     private void CookDeer()
@@ -153,7 +162,7 @@ public class PanInteractable : MonoBehaviour, IInteractable
 
         // Record the time a deer is set to be cooked
         inPanTime = Time.time;
-        startTimer = true; // logic in update
+        currState = state.cooking;
     }
 
     /// <summary>
