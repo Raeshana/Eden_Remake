@@ -248,8 +248,6 @@ Transform:
   - {fileID: 386589564}
   - {fileID: 668940934}
   - {fileID: 1488480176}
-  - {fileID: 1265257747}
-  - {fileID: 525946835}
   - {fileID: 691996640}
   - {fileID: 87631314}
   m_Father: {fileID: 0}
@@ -1001,10 +999,10 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.7662284, y: -0.6194316, z: 0.111923546, w: 0.1291188}
   m_LocalPosition: {x: 5.845317, y: 43.06983, z: -35.55177}
-  m_LocalScale: {x: 100.861496, y: 100.002686, z: 117.65689}
+  m_LocalScale: {x: 100.861496, y: 100.00268, z: 117.656876}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 176926070}
+  m_Father: {fileID: 1488480176}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &525946836
 MonoBehaviour:
@@ -2350,7 +2348,7 @@ Transform:
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 176926070}
+  m_Father: {fileID: 1488480176}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1265257748
 MonoBehaviour:
@@ -2949,7 +2947,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1938886224}
+  - {fileID: 1265257747}
+  - {fileID: 525946835}
   m_Father: {fileID: 176926070}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1589230535
@@ -3398,11 +3399,11 @@ Transform:
   m_GameObject: {fileID: 1938886221}
   serializedVersion: 2
   m_LocalRotation: {x: 0.87462497, y: -0.047467712, z: 0.21284693, w: 0.43298295}
-  m_LocalPosition: {x: 15.88, y: 20.89, z: -1.85}
+  m_LocalPosition: {x: 5.361433, y: 21.689999, z: -0.104973435}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1488480176}
   m_LocalEulerAnglesHint: {x: 51.042, y: -211.788, z: -189.27}
 --- !u!1 &2012504811
 GameObject:
@@ -3753,7 +3754,6 @@ SceneRoots:
   - {fileID: 1161995284}
   - {fileID: 304406942}
   - {fileID: 176926070}
-  - {fileID: 1938886224}
   - {fileID: 355781279}
   - {fileID: 1778905208}
   - {fileID: 286828012}
