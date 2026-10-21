@@ -13,6 +13,7 @@ TagManager:
   - Pan
   - MoneyController
   - UIText
+  - SoundManager
   layers:
   - Default
   - TransparentFX

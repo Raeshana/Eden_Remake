@@ -26,11 +26,14 @@ public class PanInteractable : MonoBehaviour, IInteractable
     private float elapsed; // calculated in update
     private float inPanTime; // set in CookDeers
 
+    private SoundManager soundManager; 
+
     void Awake()
     {
         GameObject player = GameObject.FindWithTag("Player");
         hungerStat = player.GetComponent<HungerStat>();
         playerMovement = player.GetComponent<PlayerMovement>();
+        soundManager = GameObject.FindWithTag("SoundManager").GetComponent<SoundManager>();
 
         // The pan is initially empty
         currState = state.empty;
@@ -138,6 +141,10 @@ public class PanInteractable : MonoBehaviour, IInteractable
             currState = state.raw;
             // Debug.Log(currState);
             // change mesh
+
+            // sfx
+            soundManager.Playsfx(soundManager.pot);
+
         }       
         else
         {
@@ -163,6 +170,9 @@ public class PanInteractable : MonoBehaviour, IInteractable
         // Record the time a deer is set to be cooked
         inPanTime = Time.time;
         currState = state.cooking;
+
+        //sfx
+        soundManager.Playsfx(soundManager.ignite);
     }
 
     /// <summary>
@@ -182,5 +192,8 @@ public class PanInteractable : MonoBehaviour, IInteractable
 
         // update state
         currState = state.empty;
+
+        //sfx
+        soundManager.Playsfx(soundManager.eat);
     }
 }

@@ -12,13 +12,15 @@ public class DeerInteractable : MonoBehaviour, IInteractable
     private HungerStat hungerStat;
     private string text;
 
+    private SoundManager soundManager;
+
     void Awake()
     {
         moneyController = GameObject.FindWithTag("MoneyController").GetComponent<MoneyController>();   
         GameObject player = GameObject.FindWithTag("Player");
         hungerStat = player.GetComponent<HungerStat>();  
         playerMovement = player.GetComponent<PlayerMovement>();
-
+        soundManager = GameObject.FindWithTag("SoundManager").GetComponent<SoundManager>();   
     }
 
     public string InteractionText
@@ -75,6 +77,7 @@ public class DeerInteractable : MonoBehaviour, IInteractable
         yield return new WaitForSeconds(1); 
         // dying deer animation
         // sound of shot
+        soundManager.Playsfx(soundManager.gunshot);
         currentState = DeerState.Dead;
         // decrease total deer
     }
@@ -91,6 +94,7 @@ public class DeerInteractable : MonoBehaviour, IInteractable
         playerMovement.deerGO = gameObject;
         currentState = DeerState.Dragged;
         deerMesh.SetActive(false);
+        soundManager.Playsfx(soundManager.leather);
     }
 
     /// <summary>
@@ -105,5 +109,6 @@ public class DeerInteractable : MonoBehaviour, IInteractable
         playerMovement.isDraggingDeer = false;
         currentState = DeerState.Dead;
         deerMesh.SetActive(true);
+        soundManager.Playsfx(soundManager.leather);
     }
 }
