@@ -10,10 +10,13 @@ public class Interactable : MonoBehaviour
     [SerializeField] private LayerMask raycastLayers;
     private RaycastHit hit;
 
-    // Is set in player movement using on interact input system action
+    // Used in player movement 'on interact' to determine if the raycast
+    // intersects with an interactable 
+    // (which then triggers the interact function on the interactable)
     [HideInInspector]
     public bool canInteract;
 
+    // Do something to the UI when the player interacts/ can interact
     private TMP_Text UIText;
 
     // [SerializeField] private TMP_Text crosshairs;
@@ -30,13 +33,13 @@ public class Interactable : MonoBehaviour
     void Update()
     {
         // reset to null on every frame 
-            IInteractable interactable = null;
+        IInteractable interactable = null;
 
         // Does the ray intersect the interactables layer?
         if (Physics.Raycast(transform.position, transform.forward, out hit, 100f, raycastLayers))
         {
             // draw to debug
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
+            // Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
         
             // get the interactable interface from the hit object 
             interactable = hit.collider.GetComponent<IInteractable>();
@@ -44,7 +47,7 @@ public class Interactable : MonoBehaviour
             // communicate to player that they can interact with the hit object
             if (interactable != null)
             {
-                Debug.Log(hit.collider.name);
+                // Debug.Log(hit.collider.name); // uncomment to see what interactable the raycast hit
 
                 interactable.Hover(); 
                 UIText.text = interactable.InteractionText;
