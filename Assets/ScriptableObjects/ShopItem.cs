@@ -10,13 +10,16 @@ public class ShopItem : ScriptableObject
     [Tooltip("Sprite image of the item")]
     public Image itemImage;
 
+    [Tooltip("Gameobject contianing item's mesh")]
+    public GameObject itemGO;
+
     [Tooltip("Cost of the item")]
     public float itemCost;
 
     [Tooltip("Describe item including buff")]
     public string toolTip;
 
-    [Tooltip("Is this item an upgrade? Will be used to change item display")]
+    [Tooltip("Is this item an upgrade? Will be used to change shop")]
     public bool isUpgrade;
 
     [Tooltip("Multiple by which food saturation increases")]

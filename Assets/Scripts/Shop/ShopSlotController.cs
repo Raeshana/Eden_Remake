@@ -56,11 +56,19 @@ public class ShopSlotController : MonoBehaviour, IPointerEnterHandler, IPointerE
             }
             // Disable button
             itemButton.interactable = false; 
+
+            // In both cases, place item
+            PlaceItem();
         }
         else
         {
             Debug.Log("You have inadequate money to purchase " + shopItemPopulated.name);
         }
+    }
+
+    private void PlaceItem()
+    {
+        Instantiate(shopItemPopulated.itemGO);
     }
 
     /// <summary>

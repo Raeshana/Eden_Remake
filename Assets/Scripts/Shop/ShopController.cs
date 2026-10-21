@@ -44,19 +44,19 @@ public class ShopController : MonoBehaviour
         // int upgradeNum = 0;
         for (int i = 0; i < numSlots; i++)
         {
-            Debug.Log("entering list population loop");
+            // Debug.Log("entering list population loop");
             if (shopItems[i].isUpgrade)
             { // add to the upgrades array
                 Debug.Log("shopitem: " + shopItems[i]);
                 upgradeItems.Add(shopItems[i]);
-                Debug.Log("Successfully added " + shopItems[i] + " to upgrades");
+                // Debug.Log("Successfully added " + shopItems[i] + " to upgrades");
             }
             else
             { // add to the decor array
                 decorItems.Add(shopItems[i]);
-                Debug.Log("Successfully added " + shopItems[i] + " to decor");
+                // Debug.Log("Successfully added " + shopItems[i] + " to decor");
             }
-            Debug.Log("exiting list population loop");
+            // Debug.Log("exiting list population loop");
         }
 
         // Load first shop page

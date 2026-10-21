@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShopItem
   itemName: Bed
   itemImage: {fileID: 0}
+  itemGO: {fileID: 919132149155446097, guid: 45fe3bb7cbb014ff6a51411f3d6d1438, type: 3}
   itemCost: 100
   toolTip: Looks pretty comfy
   isUpgrade: 1
