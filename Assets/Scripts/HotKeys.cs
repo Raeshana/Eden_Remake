@@ -28,10 +28,16 @@ public class HotKeys : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
-        // Press S to open/ close the shop
+        // Press S to open/ close decor shop
         if (Keyboard.current.sKey.wasPressedThisFrame)
-        {
-            shopController.toggleShop();
+        {   
+            shopController.populateDecor();
+        }
+
+        // Press I to open/ close upgrade shop
+        if (Keyboard.current.iKey.wasPressedThisFrame)
+        {   
+            shopController.populateUpgrade();
         }
     }
 }
