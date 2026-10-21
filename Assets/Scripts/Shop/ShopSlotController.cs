@@ -68,7 +68,8 @@ public class ShopSlotController : MonoBehaviour, IPointerEnterHandler, IPointerE
 
     private void PlaceItem()
     {
-        Instantiate(shopItemPopulated.itemGO);
+        Instantiate(shopItemPopulated.itemGO, shopItemPopulated.itemPosition);
+        // GameObject.FindWithTag(shopItemPopulated.itemLayer).SetActive(true);
     }
 
     /// <summary>

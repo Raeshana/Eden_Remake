@@ -13,6 +13,12 @@ public class ShopItem : ScriptableObject
     [Tooltip("Gameobject contianing item's mesh")]
     public GameObject itemGO;
 
+    [Tooltip("Transform for item instantiation")]
+    public Transform itemPosition;
+
+    [Tooltip("Temp hidden mesh")]
+    public string itemLayer;
+
     [Tooltip("Cost of the item")]
     public float itemCost;
 
@@ -22,7 +28,7 @@ public class ShopItem : ScriptableObject
     [Tooltip("Is this item an upgrade? Will be used to change shop")]
     public bool isUpgrade;
 
-    [Tooltip("Multiple by which food saturation increases")]
+    [Tooltip("Additive by which food saturation increases")]
     public float saturationModifier;
 
     [Tooltip("Additive by which satisfaction increases")]

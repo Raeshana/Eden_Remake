@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShopItem
   itemName: Chair
   itemImage: {fileID: 0}
+  itemGO: {fileID: 919132149155446097, guid: eab4f3cc512ef42de9b672e5d0ee9460, type: 3}
+  itemPosition: {fileID: -8679921383154817045, guid: eab4f3cc512ef42de9b672e5d0ee9460, type: 3}
   itemCost: 200
   toolTip: Also looks pretty comfy
   isUpgrade: 0

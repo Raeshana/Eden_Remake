@@ -65,12 +65,12 @@ MonoBehaviour:
   - {fileID: 5222522085009225286}
   numSlots: 10
   shopItems:
-  - {fileID: 11400000, guid: d9925459607ef6643ac63aece7a3f622, type: 2}
   - {fileID: 11400000, guid: 6f350331058aff04396a7ad57018de99, type: 2}
   - {fileID: 11400000, guid: be2cc1259815cd1488c9c2b7a85a286a, type: 2}
-  - {fileID: 11400000, guid: 05809a3a497e8564b88378559e25e3a0, type: 2}
-  - {fileID: 11400000, guid: ea14a84f1c418474cb55c5834c09f1ea, type: 2}
   - {fileID: 11400000, guid: 7e083d5f4ca019f49bf723b38c9f5ab8, type: 2}
+  - {fileID: 11400000, guid: 0a7c47711442c134990a6f13f2353cf1, type: 2}
+  - {fileID: 11400000, guid: 0a7c47711442c134990a6f13f2353cf1, type: 2}
+  - {fileID: 11400000, guid: 0a7c47711442c134990a6f13f2353cf1, type: 2}
   - {fileID: 11400000, guid: 0a7c47711442c134990a6f13f2353cf1, type: 2}
   - {fileID: 11400000, guid: 0a7c47711442c134990a6f13f2353cf1, type: 2}
   - {fileID: 11400000, guid: 0a7c47711442c134990a6f13f2353cf1, type: 2}

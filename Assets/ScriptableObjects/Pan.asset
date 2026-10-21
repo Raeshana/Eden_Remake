@@ -14,7 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShopItem
   itemName: Pan
   itemImage: {fileID: 0}
-  itemCost: 25
+  itemGO: {fileID: 919132149155446097, guid: 884d88247c8484615903ae2f1b895c8b, type: 3}
+  itemPosition: {fileID: 5992570167348027934, guid: bd760ab3db8cf5e49b8de81632ea3e3f, type: 3}
+  itemLayer: 
+  itemCost: 50
   toolTip: Increases max hunger by 50
   isUpgrade: 1
   saturationModifier: 2
