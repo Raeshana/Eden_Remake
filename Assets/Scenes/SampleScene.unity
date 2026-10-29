@@ -1461,62 +1461,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: eden3ddeer
       objectReference: {fileID: 0}
+    - target: {fileID: 9000244745706725137, guid: ab180f60299f3fc4ba60ac848246daff, type: 3}
+      propertyPath: movePoint
+      value: 
+      objectReference: {fileID: 783771477}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7930000073756580402, guid: ab180f60299f3fc4ba60ac848246daff, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 553392692}
-    - targetCorrespondingSourceObject: {fileID: 7930000073756580402, guid: ab180f60299f3fc4ba60ac848246daff, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 553392696}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab180f60299f3fc4ba60ac848246daff, type: 3}
 --- !u!4 &553392690 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7297755136949305480, guid: ab180f60299f3fc4ba60ac848246daff, type: 3}
   m_PrefabInstance: {fileID: 553392689}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &553392691 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7930000073756580402, guid: ab180f60299f3fc4ba60ac848246daff, type: 3}
-  m_PrefabInstance: {fileID: 553392689}
-  m_PrefabAsset: {fileID: 0}
---- !u!195 &553392692
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 553392691}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 0
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 1
-  m_ObstacleAvoidanceType: 4
---- !u!114 &553392696
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 553392691}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78a688a967ec51c48aa93b820ff0d70a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  movePoint: {fileID: 783771477}
 --- !u!1 &589636934
 GameObject:
   m_ObjectHideFlags: 0
