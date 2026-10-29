@@ -10,6 +10,7 @@ public class ShopController : MonoBehaviour
     [SerializeField] int numSlots;
 
     [Tooltip("Insert scriptable objects for all shop items here")]
+    [SerializeField] ShopItem emptyShopItem;
     [SerializeField] ShopItem[] shopItems;
     private List<ShopItem> decorItems = new List<ShopItem>();
     private List<ShopItem> upgradeItems = new List<ShopItem>();
@@ -122,11 +123,14 @@ public class ShopController : MonoBehaviour
 
         for(int i = 0; i < numSlots; i++)
         {
-            int numShopItem = i + pageNum*numSlots;
-            if (numShopItem < list.Count)
+            ShopSlotController shopSlotController = shopItemSlots[i].GetComponent<ShopSlotController>();
+            if (i < list.Count)
             {
-                ShopSlotController shopSlotController = shopItemSlots[i].GetComponent<ShopSlotController>();
-                shopSlotController.populateShopItem(list[numShopItem]);   
+                shopSlotController.populateShopItem(list[i]);   
+            }
+            else
+            {
+                shopSlotController.populateShopItem(emptyShopItem);
             }
         }
     }

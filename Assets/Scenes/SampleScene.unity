@@ -383,6 +383,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1544845740941312571, guid: fe195f83e68e5f2448c27b7ffa4b40c9, type: 3}
+      propertyPath: shopController
+      value: 
+      objectReference: {fileID: 914239950}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2079,6 +2083,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7031455752272060494, guid: f0ab63134cb6b5746acc755184be132e, type: 3}
   m_PrefabInstance: {fileID: 6196927572450992999}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &914239950 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8357268448374778675, guid: f0ab63134cb6b5746acc755184be132e, type: 3}
+  m_PrefabInstance: {fileID: 6196927572450992999}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b862bb7f8fc39d41afed28a2316c26e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShopController
 --- !u!1 &928779789
 GameObject:
   m_ObjectHideFlags: 0
@@ -4081,6 +4096,10 @@ PrefabInstance:
       propertyPath: crossHairs
       value: 
       objectReference: {fileID: 770220315}
+    - target: {fileID: 8357268448374778675, guid: f0ab63134cb6b5746acc755184be132e, type: 3}
+      propertyPath: emptyShopItem
+      value: 
+      objectReference: {fileID: 11400000, guid: 0a7c47711442c134990a6f13f2353cf1, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

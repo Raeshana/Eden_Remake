@@ -4,12 +4,12 @@ using UnityEngine.SceneManagement;
 
 public class HotKeys : MonoBehaviour
 {
-    private ShopController shopController;
+    [SerializeField] ShopController shopController;
     private SoundManager soundManager;
 
     void Awake()
     {
-        shopController = GameObject.FindWithTag("ShopController").GetComponent<ShopController>();
+        // shopController = GameObject.FindWithTag("ShopController").GetComponent<ShopController>();
         soundManager = GameObject.FindWithTag("SoundManager").GetComponent<SoundManager>();
     }
 
