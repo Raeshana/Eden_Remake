@@ -45,14 +45,9 @@ public class ShopSlotController : MonoBehaviour, IPointerEnterHandler, IPointerE
         if (moneyController.buyFromShop(shopItemPopulated.itemCost))
         {
             // If the item is an upgrade, decrease hunger rate
-            // Otherwise, add satisfaction
             if (shopItemPopulated.isUpgrade)
             {
                 hungerStat.DecreaseStatRate(shopItemPopulated.saturationModifier);                    
-            }
-            else 
-            {
-                satisfactionStat.IncreaseCurrStat(shopItemPopulated.satisfactionModifier);
             }
             // Disable button
             itemButton.interactable = false; 
@@ -63,6 +58,8 @@ public class ShopSlotController : MonoBehaviour, IPointerEnterHandler, IPointerE
         else
         {
             Debug.Log("You have inadequate money to purchase " + shopItemPopulated.name);
+            // play cant buy sound
+            // shake text animation
         }
     }
 
