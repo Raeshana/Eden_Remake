@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 15645b4a133ab495684c48de051c2116, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 48
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 15645b4a133ab495684c48de051c2116, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.00001001358
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 15645b4a133ab495684c48de051c2116, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -35.2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 15645b4a133ab495684c48de051c2116, type: 3}
       propertyPath: m_LocalRotation.w
@@ -86,7 +86,7 @@ PrefabInstance:
       addedObject: {fileID: 4704078441319754868}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 15645b4a133ab495684c48de051c2116, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 9000244745706725137}
+      addedObject: {fileID: 2253934752916945649}
   m_SourcePrefab: {fileID: 100100000, guid: 15645b4a133ab495684c48de051c2116, type: 3}
 --- !u!1 &1405350601326748395 stripped
 GameObject:
@@ -150,6 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DeerInteractable
   deerMesh: {fileID: 1405350601326748395}
+  currentState: 0
 --- !u!195 &4704078441319754868
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -160,7 +161,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 4.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -172,7 +173,7 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
---- !u!114 &9000244745706725137
+--- !u!114 &2253934752916945649
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -183,5 +184,9 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 78a688a967ec51c48aa93b820ff0d70a, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
-  movePoint: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::DeerMovement
+  moveTimeLimit: 20
+  moveTimeRange: 10
+  maxMoveDist: 5
+  currMovePoint: {fileID: 0}
+  movePoints: []

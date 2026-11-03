@@ -16,7 +16,7 @@ TagManager:
   - SoundManager
   - chandelier
   - chair
-  - pan_n
+  - MovePoint
   layers:
   - Default
   - TransparentFX

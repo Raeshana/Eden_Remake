@@ -5,22 +5,22 @@ using TMPro;
 public class DeerInteractable : MonoBehaviour, IInteractable
 {
     [SerializeField] GameObject deerMesh;
-    private DeerState currentState = DeerState.Live;
+    [HideInInspector]
+    public DeerState currentState;
 
     private PlayerMovement playerMovement;
-    private MoneyController moneyController;
-    private HungerStat hungerStat;
     private string text;
 
     private SoundManager soundManager;
+    private DeerManager deerManager;
 
     void Awake()
     {
-        moneyController = GameObject.FindWithTag("MoneyController").GetComponent<MoneyController>();   
         GameObject player = GameObject.FindWithTag("Player");
-        hungerStat = player.GetComponent<HungerStat>();  
         playerMovement = player.GetComponent<PlayerMovement>();
         soundManager = GameObject.FindWithTag("SoundManager").GetComponent<SoundManager>();   
+        deerManager = GameObject.FindWithTag("DeerManager").GetComponent<DeerManager>();
+        currentState = DeerState.Live;
     }
 
     public string InteractionText
@@ -74,12 +74,13 @@ public class DeerInteractable : MonoBehaviour, IInteractable
     /// <returns></returns>
     private IEnumerator ShootDeer()
     {
-        yield return new WaitForSeconds(1); 
-        // dying deer animation
         // sound of shot
         soundManager.Playsfx(soundManager.gunshot);
         currentState = DeerState.Dead;
+        yield return new WaitForSeconds(1); 
+        // dying deer animation
         // decrease total deer
+        deerManager.decreaseNumDeer();
     }
 
     /// <summary>

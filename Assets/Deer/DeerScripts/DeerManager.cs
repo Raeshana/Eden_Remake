@@ -3,42 +3,47 @@ using System.Collections;
 
 public class DeerManager : MonoBehaviour
 {
-    // static public int numDeer;
+    static public int numDeer;
     [SerializeField] GameObject deerGO; 
-    [SerializeField] Transform[] deerTransforms;
-    private bool isSpawning;
+    [SerializeField] Transform[] spawnPoints;
+    [SerializeField] float spawnTime;
+
+    public Transform[] movePoints;
+    
+    private float lastSpawnTime = 0;
+    private float elapsed = 0; 
 
     void Awake()
     {
-        // numDeer = 0; // Initialize
-        isSpawning = false;
+        numDeer = 0; // Initialize
     } 
 
     void Update()
     {
-        // if no deer exist
-        if (GameObject.FindWithTag("Deer") == null && !isSpawning)
+        elapsed = Time.time - lastSpawnTime;
+        // Spawn deer depending on current num deer
+        if (elapsed >= (numDeer * spawnTime))
         {
-            // spawn one in same spot as before after 5 seconds
-            StartCoroutine(SpawnDeer());
-            // numDeer++;
+            lastSpawnTime = Time.time;
+            SpawnDeer();
+            numDeer++;
         }
-        // stop deer spawning
-        else StopCoroutine(SpawnDeer());
-    }
+    }   
 
-    private IEnumerator SpawnDeer()
+    /// <summary>
+    /// Instantiate deer at a random spawn point
+    /// </summary>
+    private void SpawnDeer()
     {
-        isSpawning = true;
-        yield return new WaitForSeconds(5f);
-        Instantiate(deerGO, deerTransforms[0]);
-        isSpawning = false;
-        // Debug.Log("Number of deer increased: " + numDeer);
+        Instantiate(deerGO, spawnPoints[Random.Range(0, spawnPoints.Length-1)]);
     }
 
+    /// <summary>
+    /// When deer is killed, decrease total deer
+    /// </summary>
     public void decreaseNumDeer()
     {
-        // numDeer = numDeer - 1;
-        // Debug.Log("Number of deer decreased: " + numDeer);
+        numDeer = numDeer - 1;
+        Debug.Log("Number of deer decreased: " + numDeer);
     }
 }
