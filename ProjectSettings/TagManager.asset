@@ -17,6 +17,8 @@ TagManager:
   - chandelier
   - chair
   - MovePoint
+  - pan_n
+  - Cursor
   layers:
   - Default
   - TransparentFX

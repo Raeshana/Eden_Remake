@@ -25,9 +25,6 @@ public class DeerAI : MonoBehaviour
 
     private DeerInteractable deerInteractable;
 
-    private float deathTime = 0;
-    [SerializeField] float deathDuration;
-
     void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
@@ -42,9 +39,6 @@ public class DeerAI : MonoBehaviour
         }
 
         currMovePoint = movePoints[GetMovePoint()];
-        deathDuration = 0;
-
-        
     }
 
     void Update()

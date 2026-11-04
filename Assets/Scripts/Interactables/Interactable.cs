@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using TMPro;
 
@@ -9,6 +9,7 @@ public class Interactable : MonoBehaviour
     [Tooltip("Choose what objects get hit by raycast")]
     [SerializeField] private LayerMask raycastLayers;
     private RaycastHit hit;
+    private Image cursor;
 
     // Used in player movement 'on interact' to determine if the raycast
     // intersects with an interactable 
@@ -27,6 +28,7 @@ public class Interactable : MonoBehaviour
         canInteract = false;
         UIText = GameObject.FindWithTag("UIText").GetComponent<TMP_Text>();
         UIText.text = " ";
+        cursor = GameObject.FindWithTag("Cursor").GetComponent<Image>();
     }
 
     // Update is called once per frame
@@ -63,6 +65,8 @@ public class Interactable : MonoBehaviour
         else
         {
             // UIText.text = " ";
+            // make sure cursor is white
+            // cursor.color = Color.white;
         }
     }
 }

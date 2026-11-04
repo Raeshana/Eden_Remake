@@ -7,8 +7,8 @@ public class ShopItem : ScriptableObject
     [Tooltip("Name of the item")]
     public string itemName;
 
-    [Tooltip("Sprite image of the item")]
-    public Image itemImage;
+    [Tooltip("Sprite of the item")]
+    public Sprite itemSprite;
 
     [Tooltip("Gameobject contianing item's mesh")]
     public GameObject itemGO;

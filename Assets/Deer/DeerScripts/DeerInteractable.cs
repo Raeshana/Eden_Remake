@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections;
 using TMPro;
+using UnityEngine.UI;
+using Unity.VisualScripting;
 
 public class DeerInteractable : MonoBehaviour, IInteractable
 {
@@ -14,6 +16,8 @@ public class DeerInteractable : MonoBehaviour, IInteractable
     private SoundManager soundManager;
     private DeerManager deerManager;
 
+    private Image cursor;
+
     void Awake()
     {
         GameObject player = GameObject.FindWithTag("Player");
@@ -21,6 +25,7 @@ public class DeerInteractable : MonoBehaviour, IInteractable
         soundManager = GameObject.FindWithTag("SoundManager").GetComponent<SoundManager>();   
         deerManager = GameObject.FindWithTag("DeerManager").GetComponent<DeerManager>();
         currentState = DeerState.Live;
+        cursor = GameObject.FindWithTag("Cursor").GetComponent<Image>();
     }
 
     public string InteractionText
@@ -34,14 +39,26 @@ public class DeerInteractable : MonoBehaviour, IInteractable
         switch (currentState)
         {
             case DeerState.Live:
+            {
+                // turn cursor red to indicate hit
+                Debug.Log(cursor.name);
+                cursor.color = Color.red;
                 text = "E to shoot deer";
                 break;
+            }
             case DeerState.Dead:
+            {
+                // turn cursor blue to indicate 'something idk'
+                cursor.color = Color.blue;
                 text = "E to pick up deer";
                 break;
+            }
             case DeerState.Dragged:
+            {
+                // cursor.sprite = 
                 text = "You are dragging the deer. E to deselect.";
                 break;
+            }
         }
         
     }
