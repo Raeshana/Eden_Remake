@@ -51,6 +51,12 @@ public class Interactable : MonoBehaviour
             {
                 // Debug.Log(hit.collider.name); // uncomment to see what interactable the raycast hit
 
+                // make sure scope is white otherwise
+                if (hit.collider.tag != "Deer")
+                {
+                    cursor.color = Color.white;
+                }
+
                 interactable.Hover(); 
                 UIText.text = interactable.InteractionText;
 
@@ -61,11 +67,8 @@ public class Interactable : MonoBehaviour
                     canInteract = false;
                 }
             }   
-        }
-        else
-        {
-            // UIText.text = " ";
-            // make sure cursor is white
+        } else {
+            // why dont you work here???
             // cursor.color = Color.white;
         }
     }
