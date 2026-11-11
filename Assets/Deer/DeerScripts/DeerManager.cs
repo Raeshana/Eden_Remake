@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class DeerManager : MonoBehaviour
 {
@@ -13,9 +14,13 @@ public class DeerManager : MonoBehaviour
     private float lastSpawnTime = 0;
     private float elapsed = 0; 
 
+    public Image cursor;
+
     void Awake()
     {
         numDeer = 0; // Initialize
+        // get cursor for deer to reference
+        cursor = GameObject.FindWithTag("Cursor").GetComponent<Image>();
     } 
 
     void Update()

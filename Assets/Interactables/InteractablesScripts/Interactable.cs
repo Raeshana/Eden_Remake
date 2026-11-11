@@ -3,13 +3,14 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using TMPro;
+using Unity.VisualScripting;
 
 public class Interactable : MonoBehaviour
 {   // Ref. https://youtu.be/48p1M7McQ_0?si=JHEVSlWgCrmgfR9W
     [Tooltip("Choose what objects get hit by raycast")]
     [SerializeField] private LayerMask raycastLayers;
     private RaycastHit hit;
-    private Image cursor;
+    // [SerializeField] Image cursor;
 
     // Used in player movement 'on interact' to determine if the raycast
     // intersects with an interactable 
@@ -22,13 +23,17 @@ public class Interactable : MonoBehaviour
 
     // [SerializeField] private TMP_Text crosshairs;
 
+    // to know when to change scope
+    private DeerManager deerManager;
+
     void Awake()
     {
         // uiContainer.SetActive(false);
         canInteract = false;
         UIText = GameObject.FindWithTag("UIText").GetComponent<TMP_Text>();
         UIText.text = " ";
-        cursor = GameObject.FindWithTag("Cursor").GetComponent<Image>();
+        deerManager = GameObject.FindWithTag("DeerManager").GetComponent<DeerManager>();
+
     }
 
     // Update is called once per frame
@@ -52,10 +57,10 @@ public class Interactable : MonoBehaviour
                 // Debug.Log(hit.collider.name); // uncomment to see what interactable the raycast hit
 
                 // make sure scope is white otherwise
-                if (hit.collider.tag != "Deer")
-                {
-                    cursor.color = Color.white;
-                }
+                // if (hit.collider.tag != "Deer")
+                // {
+                //     deerManager.cursor.color = Color.white;
+                // }
 
                 interactable.Hover(); 
                 UIText.text = interactable.InteractionText;
@@ -66,10 +71,20 @@ public class Interactable : MonoBehaviour
                     interactable.Interact();
                     canInteract = false;
                 }
-            }   
-        } else {
-            // why dont you work here???
-            // cursor.color = Color.white;
+            }  
+            
+            // if (interactable == null || hit.collider.tag != "Deer")
+            // {
+            //     deerManager.cursor.color = Color.white;
+            // }
+        }
+        else
+        {
+            Debug.Log("not intersecting");
+            if (interactable == null || hit.collider.tag != "Deer")
+            {
+                deerManager.cursor.color = Color.white;
+            }
         }
     }
 }

@@ -16,7 +16,7 @@ public class DeerInteractable : MonoBehaviour, IInteractable
     private SoundManager soundManager;
     private DeerManager deerManager;
 
-    private Image cursor;
+    // private Image cursor;
 
     void Awake()
     {
@@ -25,7 +25,6 @@ public class DeerInteractable : MonoBehaviour, IInteractable
         soundManager = GameObject.FindWithTag("SoundManager").GetComponent<SoundManager>();   
         deerManager = GameObject.FindWithTag("DeerManager").GetComponent<DeerManager>();
         currentState = DeerState.Live;
-        cursor = GameObject.FindWithTag("Cursor").GetComponent<Image>();
     }
 
     public string InteractionText
@@ -41,15 +40,15 @@ public class DeerInteractable : MonoBehaviour, IInteractable
             case DeerState.Live:
             {
                 // turn cursor red to indicate hit
-                Debug.Log(cursor.name);
-                cursor.color = Color.red;
+                Debug.Log(deerManager.cursor.name);
+                deerManager.cursor.color = Color.red;
                 text = "E to shoot deer";
                 break;
             }
             case DeerState.Dead:
             {
                 // turn cursor blue to indicate 'something idk'
-                cursor.color = Color.blue;
+                // cursor.color = Color.blue;
                 text = "E to pick up deer";
                 break;
             }
@@ -124,9 +123,14 @@ public class DeerInteractable : MonoBehaviour, IInteractable
     {
         // deer icon false
         // deerIconGO.SetActive(false);
-        playerMovement.isDraggingDeer = false;
-        currentState = DeerState.Dead;
-        deerMesh.SetActive(true);
-        soundManager.Playsfx(soundManager.leather);
+        // playerMovement.isDraggingDeer = false;
+
+        // if deer was not eaten
+        if (playerMovement.isDraggingDeer)
+        {
+            currentState = DeerState.Dead;
+            deerMesh.SetActive(true);
+            soundManager.Playsfx(soundManager.leather);   
+        }
     }
 }

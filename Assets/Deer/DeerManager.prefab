@@ -77,11 +77,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8895e784c8bc31c47bbb1aa62b4efe3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DeerManager
-  deerGO: {fileID: 7930000073756580402, guid: ab180f60299f3fc4ba60ac848246daff, type: 3}
+  deerGO: {fileID: 0}
   spawnPoints:
-  - {fileID: 3104056523371243541}
-  - {fileID: 5017728873108194098}
-  - {fileID: 2005932916202278215}
+  - {fileID: 9004308070118422430}
+  - {fileID: 893027327998141126}
+  - {fileID: 7476784186601326590}
+  - {fileID: 4932807764052278837}
+  - {fileID: 5443554762176748267}
+  - {fileID: 1068217082925167801}
   spawnTime: 5
   movePoints:
   - {fileID: 9004308070118422430}
@@ -90,6 +93,7 @@ MonoBehaviour:
   - {fileID: 4932807764052278837}
   - {fileID: 5443554762176748267}
   - {fileID: 1068217082925167801}
+  cursor: {fileID: 0}
 --- !u!1 &2275056570473687057
 GameObject:
   m_ObjectHideFlags: 0

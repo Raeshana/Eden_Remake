@@ -5,6 +5,11 @@ using Unity.VisualScripting;
 
 public class PanInteractable : MonoBehaviour, IInteractable
 {
+    [SerializeField] GameObject meatGO;
+    [SerializeField] MeshRenderer meatMeshRenderer;
+    [SerializeField] Material cookedMeat;
+    [SerializeField] Material rawMeat;
+
     // The pan can be empty,
     // filled with raw meat, or
     // filled with cooked meat
@@ -47,8 +52,8 @@ public class PanInteractable : MonoBehaviour, IInteractable
             if (elapsed >= 3)
             {
                 // change mesh to cooked and update state
-                // change mesh
                 currState = state.cooked;
+                CookedDeer(); // change mesh
                 // Debug.Log(currState);
                 elapsed = 0f; // reset timer
             }    
@@ -134,7 +139,9 @@ public class PanInteractable : MonoBehaviour, IInteractable
         {
             // thing to display/ player feedback
             text = "Deer placed in pan";
-            
+            meatGO.SetActive(true);
+            meatMeshRenderer.material = rawMeat;
+
             // change deer state -> raw
             playerMovement.isDraggingDeer = false;
             Destroy(playerMovement.deerGO); // would no longer exist
@@ -165,14 +172,33 @@ public class PanInteractable : MonoBehaviour, IInteractable
     {   
         // player feedback
         text = "Stove turned on- deer cooking";
-        // play stove turning on sound
+        
+        // smoke vfx
+
+        // fire vfx
 
         // Record the time a deer is set to be cooked
         inPanTime = Time.time;
         currState = state.cooking;
 
-        //sfx
+        //sfx - play stove turning on sound
         soundManager.Playsfx(soundManager.ignite);
+    }
+
+    /// <summary>
+    /// Assertion: current state is cooked
+    /// Change mesh to reflect cooked deer
+    /// </summary>
+    private void CookedDeer()
+    {
+        // player feedback
+        text = "Deer is cooked";
+
+        // change mesh
+        meatMeshRenderer.material = cookedMeat;
+
+        //sfx - play oven ding
+        // soundManager.Playsfx(soundManager.oven);
     }
 
     /// <summary>
@@ -185,7 +211,6 @@ public class PanInteractable : MonoBehaviour, IInteractable
     {
         // player feedback
         text = "You have eaten the deer";
-        // play eating sound
 
         // eating increases the player's 'fullness'
         hungerStat.IncreaseCurrStat(5); 
@@ -193,7 +218,10 @@ public class PanInteractable : MonoBehaviour, IInteractable
         // update state
         currState = state.empty;
 
-        //sfx
+        //sfx - play eating sound
         soundManager.Playsfx(soundManager.eat);
+
+        // hide mesh
+        meatGO.SetActive(false);
     }
 }

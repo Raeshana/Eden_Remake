@@ -5,20 +5,22 @@ using System.Collections;
 
 public class DeerAI : MonoBehaviour
 {
-    // [SerializeField] GameObject deerGO;
-    private NavMeshAgent navMeshAgent;
-    [SerializeField] float moveTimeLimit;
-    [SerializeField] float moveTimeRange;
-    private float actualMoveLimit;
-
-    [SerializeField] float maxMoveDist;
-    private float moveDist;
+    [SerializeField] GameObject deerGO;
+    // // private NavMeshAgent navMeshAgent;
+    // [SerializeField] float moveTimeLimit;
+    // [SerializeField] float moveTimeRange;
+    // private float actualMoveLimit;
+    [SerializeField] float moveSpeed;
 
     [Tooltip("For debugging")]
     [SerializeField] Transform currMovePoint;
-    private bool atMovePoint = false;
-    private float startTime = 0;
-    private float elapsed = 0;
+    private Transform lastMovePoint;
+    // private bool atMovePoint = false;
+    private float startTimeStop = 0;
+    private float elapsedStop = 0;
+    private float startTimeMove = 0;
+    private float elapsedMove = 0;
+    private float moveDist = 0;
 
     private DeerManager deerManager;
     public Transform[] movePoints;
@@ -27,7 +29,7 @@ public class DeerAI : MonoBehaviour
 
     void Awake()
     {
-        navMeshAgent = GetComponent<NavMeshAgent>();
+        // navMeshAgent = GetComponent<NavMeshAgent>();
         deerInteractable = GetComponent<DeerInteractable>();
         deerManager = GameObject.FindWithTag("DeerManager").GetComponent<DeerManager>();
 
@@ -38,42 +40,64 @@ public class DeerAI : MonoBehaviour
             movePoints[i] = deerManager.movePoints[i];
         }
 
+        lastMovePoint = deerGO.transform;
         currMovePoint = movePoints[GetMovePoint()];
+        moveDist = Vector3.Distance(lastMovePoint.position, currMovePoint.position);
     }
 
     void Update()
     {
+        // float time += Time.deltaTime;
+
         switch(deerInteractable.currentState)
         {
             case DeerState.Live:
-                MoveDeer(currMovePoint);
-
-                // if distance between deer and move point is within threshold
-                moveDist = Vector3.Distance(currMovePoint.position, gameObject.transform.position);
-                if (moveDist <= maxMoveDist && !atMovePoint) {
-                    atMovePoint = true; // set at move point flag
-                    startTime = Time.time; // record time entered
-                }
-
-                // if deer is at the movePoint
-                if (atMovePoint)
+                // if the deer is alive, we want it to move to currPoint
+                float distCovered = (Time.time - startTimeMove) * moveSpeed;
+                float fractionOfJourney = distCovered/moveDist;
+                deerGO.transform.position = Vector3.Lerp(lastMovePoint.position, currMovePoint.position, fractionOfJourney);
+                
+                // when it reaches currPoint
+                if (deerGO.transform.position == currMovePoint.position)
                 {
-                    // start counting
-                    elapsed = Time.time - startTime;
-
-                    // if x time has passed
-                    // update curr move point
-                    if (elapsed >= actualMoveLimit)
-                    {
-                        currMovePoint = movePoints[GetMovePoint()];
-                        atMovePoint = false;
-                    }
+                    // set lastPoint to currPoint
+                    lastMovePoint = currMovePoint;
+                    // find a new point
+                    currMovePoint = movePoints[GetMovePoint()];
+                    // recalculate dist between points
+                    moveDist = Vector3.Distance(lastMovePoint.position, currMovePoint.position);
+                    // reaset start time move
+                    startTimeMove = Time.time;
                 }
+                
+                // // if distance between deer and move point is within threshold
+                
+                // if (moveDist <= maxMoveDist && !atMovePoint) {
+                //     atMovePoint = true; // set at move point flag
+                //     startTimeStop = Time.time; // record time entered
+                // }
+
+                // // if deer is at the movePoint
+                // if (atMovePoint)
+                // {
+                //     // start counting
+                //     elapsedStop = Time.time - startTimeStop;
+
+                //     // if x time has passed
+                //     // update curr move point
+                //     if (elapsedStop >= actualMoveLimit)
+                //     {
+                //         lastMovePoint = currMovePoint;
+                        
+                //         atMovePoint = false;
+                //         startTimeMove = 0; // start recording time moving
+                //     }
+                // }
                 break;
             
             case DeerState.Dead:
                 // play death animation
-                StartCoroutine(LerpFunction(Quaternion.Euler(new Vector3(90,0,0)), 5));
+                StartCoroutine(LerpRotation(Quaternion.Euler(new Vector3(0,0,90)), 1));
                 break;
 
             case DeerState.Dragged:
@@ -86,26 +110,11 @@ public class DeerAI : MonoBehaviour
     /// +- the move time limit
     /// </summary>
     /// <returns></returns>
-    private float GetMoveTimeLimit()
-    {
-        return UnityEngine.Random.Range(moveTimeLimit - moveTimeRange, 
-                            moveTimeLimit + moveTimeRange);
-    }
-
-    /// <summary>
-    /// Move nav mesh towards move point
-    /// </summary>
-    /// <param name="point"></param>
-    private void MoveDeer(Transform point)
-    {
-        try {
-            navMeshAgent.destination = point.position;
-        } catch(Exception e)
-        {
-            Debug.Log(e);
-        }
-        
-    }
+    // private float GetMoveTimeLimit()
+    // {
+    //     return UnityEngine.Random.Range(moveTimeLimit - moveTimeRange, 
+    //                         moveTimeLimit + moveTimeRange);
+    // }
 
     /// <summary>
     /// Get a random move point
@@ -114,12 +123,11 @@ public class DeerAI : MonoBehaviour
     /// <returns></returns>
     private int GetMovePoint()
     {
-        actualMoveLimit = GetMoveTimeLimit();
         return (int)UnityEngine.Random.Range(0, movePoints.Length-1);
     }
 
     // https://gamedevbeginner.com/glossary/how-to-lerp-rotation-in-unity/
-    IEnumerator LerpFunction(Quaternion endValue, float duration)
+    IEnumerator LerpRotation(Quaternion endValue, float duration)
     {
         float time = 0;
         Quaternion startValue = transform.rotation;

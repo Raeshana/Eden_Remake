@@ -9,7 +9,6 @@ public class HotKeys : MonoBehaviour
 
     void Awake()
     {
-        // shopController = GameObject.FindWithTag("ShopController").GetComponent<ShopController>();
         soundManager = GameObject.FindWithTag("SoundManager").GetComponent<SoundManager>();
     }
 
@@ -20,35 +19,55 @@ public class HotKeys : MonoBehaviour
         // Press Esc to quit
         if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
-            PlaySound();
-            Application.Quit();
-            Debug.Log("Quitting game.");
+            QuitGame();
         }
 
         // Press R to reload the current scene
         if (Keyboard.current.rKey.wasPressedThisFrame)
         {
-            PlaySound();
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            ReloadGame();
         }
 
         // Press S to open/ close decor shop
         if (Keyboard.current.sKey.wasPressedThisFrame)
         {   
-            PlaySound();
-            shopController.populateDecor();
+            ToggleDecorShop();
         }
 
         // Press I to open/ close upgrade shop
         if (Keyboard.current.iKey.wasPressedThisFrame)
         {   
-            PlaySound();
-            shopController.populateUpgrade();
+            ToggleUpgradeShop();
         }
     }
 
     private void PlaySound()
     {
         soundManager.Playsfx(soundManager.click);   
+    }
+
+    public void QuitGame()
+    {
+        PlaySound();
+        Application.Quit();
+        Debug.Log("Quitting game.");
+    }
+
+    public void ReloadGame()
+    {
+        PlaySound();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }    
+
+    public void ToggleDecorShop()
+    {
+        PlaySound();
+        shopController.populateDecor();
+    }
+
+    public void ToggleUpgradeShop()
+    {
+        PlaySound();
+        shopController.populateUpgrade();
     }
 }
