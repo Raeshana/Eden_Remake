@@ -19,6 +19,7 @@ TagManager:
   - MovePoint
   - pan_n
   - Cursor
+  - Hand
   layers:
   - Default
   - TransparentFX

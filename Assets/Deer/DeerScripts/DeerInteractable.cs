@@ -111,6 +111,7 @@ public class DeerInteractable : MonoBehaviour, IInteractable
         playerMovement.deerGO = gameObject;
         currentState = DeerState.Dragged;
         deerMesh.SetActive(false);
+        deerManager.hand.gameObject.SetActive(true);
         soundManager.Playsfx(soundManager.leather);
     }
 
@@ -130,6 +131,7 @@ public class DeerInteractable : MonoBehaviour, IInteractable
         {
             currentState = DeerState.Dead;
             deerMesh.SetActive(true);
+            deerManager.hand.gameObject.SetActive(false);
             soundManager.Playsfx(soundManager.leather);   
         }
     }

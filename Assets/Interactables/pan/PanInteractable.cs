@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEngine.UI;
 
 public class PanInteractable : MonoBehaviour, IInteractable
 {
@@ -9,6 +10,8 @@ public class PanInteractable : MonoBehaviour, IInteractable
     [SerializeField] MeshRenderer meatMeshRenderer;
     [SerializeField] Material cookedMeat;
     [SerializeField] Material rawMeat;
+    private DeerManager deerManager;
+    private Image hand;
 
     // The pan can be empty,
     // filled with raw meat, or
@@ -39,6 +42,7 @@ public class PanInteractable : MonoBehaviour, IInteractable
         hungerStat = player.GetComponent<HungerStat>();
         playerMovement = player.GetComponent<PlayerMovement>();
         soundManager = GameObject.FindWithTag("SoundManager").GetComponent<SoundManager>();
+        deerManager = GameObject.FindWithTag("DeerManager").GetComponent<DeerManager>();
 
         // The pan is initially empty
         currState = state.empty;
@@ -141,6 +145,7 @@ public class PanInteractable : MonoBehaviour, IInteractable
             text = "Deer placed in pan";
             meatGO.SetActive(true);
             meatMeshRenderer.material = rawMeat;
+            deerManager.hand.gameObject.SetActive(false);
 
             // change deer state -> raw
             playerMovement.isDraggingDeer = false;

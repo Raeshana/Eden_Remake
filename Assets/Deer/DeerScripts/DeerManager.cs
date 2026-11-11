@@ -15,6 +15,7 @@ public class DeerManager : MonoBehaviour
     private float elapsed = 0; 
 
     public Image cursor;
+    public Image hand;
 
     void Awake()
     {

@@ -9,6 +9,7 @@ public class TanningRackInteractable : MonoBehaviour, IInteractable
     private MoneyController moneyController;
     private string text;
     private SoundManager soundManager;
+    private DeerManager deerManager;
 
     void Awake()
     {
@@ -17,6 +18,7 @@ public class TanningRackInteractable : MonoBehaviour, IInteractable
         playerMovement = player.GetComponent<PlayerMovement>();
         moneyController = GameObject.FindWithTag("MoneyController").GetComponent<MoneyController>();
         soundManager = GameObject.FindWithTag("SoundManager").GetComponent<SoundManager>();
+        deerManager = GameObject.FindWithTag("DeerManager").GetComponent<DeerManager>();
     }
 
     public string InteractionText
@@ -54,7 +56,7 @@ public class TanningRackInteractable : MonoBehaviour, IInteractable
         Debug.Log("sold");
         playerMovement.isDraggingDeer = false;
         Destroy(playerMovement.deerGO); // would no longer exist
-
+        deerManager.hand.gameObject.SetActive(false);
         //sfx
         soundManager.Playsfx(soundManager.sold);
     }
