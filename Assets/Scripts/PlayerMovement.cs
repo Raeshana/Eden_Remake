@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector]
     public GameObject deerGO;
 
-    [SerializeField] float sensitivity;
+    private float sensitivity = 0.5f;
     private float yaw = 0f;
     private float pitch = 0f;
     private Vector2 lookVector;

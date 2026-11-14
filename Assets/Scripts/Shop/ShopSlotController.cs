@@ -76,7 +76,7 @@ public class ShopSlotController : MonoBehaviour, IPointerEnterHandler, IPointerE
     public void populateShopItem(ShopItem shopItem)
     {
         itemName.text = shopItem.itemName;
-        itemImage.sprite = shopItem.itemSprite;
+        itemImage = shopItem.itemImage;
         itemCostSlot.text = "$" + shopItem.itemCost;
         toolTip.GetComponentInChildren<TMP_Text>().text = "" + shopItem.toolTip;
 
