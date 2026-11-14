@@ -80,7 +80,7 @@ public class Interactable : MonoBehaviour
         }
         else
         {
-            Debug.Log("not intersecting");
+            // Debug.Log("not intersecting");
             if (interactable == null || hit.collider.tag != "Deer")
             {
                 deerManager.cursor.color = Color.white;

@@ -1,11 +1,11 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Events;
 
 public class PlayerMovement : MonoBehaviour
 {
     // private ShopController shopController;
-    UnityEvent isShopOpen;
+    // UnityEvent isShopOpen;
+    [HideInInspector]
     public bool isDraggingDeer;
     [HideInInspector]
     public GameObject deerGO;
@@ -15,6 +15,10 @@ public class PlayerMovement : MonoBehaviour
     private float pitch = 0f;
     private Vector2 lookVector;
 
+    private Vector2 moveDir;
+    [SerializeField] float moveSpeed;
+    private Rigidbody rigidBody;
+
     void Awake()
     {
         // Get reference to shop in scene
@@ -23,12 +27,39 @@ public class PlayerMovement : MonoBehaviour
         // Check for if player is dragging deer or not
         // To check eat/ sell interactions
         isDraggingDeer = false;
+        rigidBody = GetComponent<Rigidbody>();
 
         // // Listen for shop opened event
         // if (isShopOpen == null)
         //     isShopOpen = new UnityEvent();
 
         // isShopOpen.AddListener(shopController.toggleShop);
+    }  
+
+    // update every fixed duration
+    void FixedUpdate()
+    {   // apply rotated moveDir to velocity
+
+        // rigidBody.transform.position == rigidBody.transform.forward 
+        Debug.Log("move dir: " + moveDir + "\n");
+
+        // combine inputs into a move
+        Vector3 moveVec = moveDir.x * rigidBody.transform.right + 
+                        moveDir.y * rigidBody.transform.forward;
+        
+        // make sure player does not move vertically
+        moveVec.y = 0f;
+
+        // normalize for dialonal movement
+        Vector3.Normalize(moveVec);
+
+        // multiply by speed and set linear velocity
+        rigidBody.linearVelocity = moveVec * moveSpeed;
+        Debug.Log("vel vec: " + rigidBody.linearVelocity + "\n");
+        
+        
+        // (moveDir * moveSpeed) + rigidBody.transform.forward;
+        // (moveDir * moveSpeed) + rigidBody.transform.forward;
     }
 
     /// <summary>
@@ -62,5 +93,12 @@ public class PlayerMovement : MonoBehaviour
             // Debug.Log("Interacting");
             GetComponentInChildren<Interactable>().canInteract = true;
         }
+    }
+
+    // Ref https://docs.unity.com/en-us/engine/6000.0/script-reference/unityengine/charactercontroller/move
+    // Ref https://youtu.be/ONlMEZs9Rgw?si=2MnTXW74qjHer4EH
+   void OnMove(InputValue input)
+    {
+        moveDir = input.Get<Vector2>();
     }
 }

@@ -4,12 +4,14 @@ using UnityEngine.SceneManagement;
 
 public class HotKeys : MonoBehaviour
 {
-    [SerializeField] ShopController shopController;
+    [HideInInspector]
+    public ShopController shopController;
     private SoundManager soundManager;
 
     void Awake()
     {
         soundManager = GameObject.FindWithTag("SoundManager").GetComponent<SoundManager>();
+        shopController = GameObject.FindWithTag("ShopController").GetComponent<ShopController>();
     }
 
     void Update()
@@ -28,14 +30,14 @@ public class HotKeys : MonoBehaviour
             ReloadGame();
         }
 
-        // Press S to open/ close decor shop
-        if (Keyboard.current.sKey.wasPressedThisFrame)
+        // Press I to open/ close decor shop
+        if (Keyboard.current.iKey.wasPressedThisFrame)
         {   
             ToggleDecorShop();
         }
 
-        // Press I to open/ close upgrade shop
-        if (Keyboard.current.iKey.wasPressedThisFrame)
+        // Press U to open/ close upgrade shop
+        if (Keyboard.current.uKey.wasPressedThisFrame)
         {   
             ToggleUpgradeShop();
         }
