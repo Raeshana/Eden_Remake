@@ -189,6 +189,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   isDraggingDeer: 0
   deerGO: {fileID: 0}
+  moveSpeed: 10
 --- !u!114 &8033343147367934562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,7 +203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   maxStat: 100
-  statRate: 1
+  statRate: 100
   statSlider: {fileID: 0}
 --- !u!114 &1544845740941312571
 MonoBehaviour:
@@ -216,6 +217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f29bcaa6d443d304e8304d0ae2624463, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HotKeys
+  shopController: {fileID: 0}
 --- !u!1 &2797757755210294104
 GameObject:
   m_ObjectHideFlags: 0
