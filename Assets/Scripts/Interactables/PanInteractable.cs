@@ -199,8 +199,8 @@ public class PanInteractable : MonoBehaviour, IInteractable
         // change mesh
         meatMeshRenderer.material = cookedMeat;
 
-        //sfx - play oven ding
-        // soundManager.Playsfx(soundManager.oven);
+        // sfx - play oven ding
+        soundManager.Playsfx(soundManager.ding);
     }
 
     /// <summary>

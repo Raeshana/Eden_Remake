@@ -15,6 +15,8 @@ public class SoundManager : MonoBehaviour
     public AudioClip leather;
     public AudioClip click;
     public AudioClip eat;
+    public AudioClip deerDeath;
+    public AudioClip ding;
 
     private void Start()
     {
