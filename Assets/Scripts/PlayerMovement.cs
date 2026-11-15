@@ -19,6 +19,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float moveSpeed;
     private Rigidbody rigidBody;
 
+    [SerializeField] GameObject hand;
+
     void Awake()
     {
         // Get reference to shop in scene
@@ -38,11 +40,7 @@ public class PlayerMovement : MonoBehaviour
 
     // update every fixed duration
     void FixedUpdate()
-    {   // apply rotated moveDir to velocity
-
-        // rigidBody.transform.position == rigidBody.transform.forward 
-        Debug.Log("move dir: " + moveDir + "\n");
-
+    {   
         // combine inputs into a move
         Vector3 moveVec = moveDir.x * rigidBody.transform.right + 
                         moveDir.y * rigidBody.transform.forward;
@@ -55,11 +53,10 @@ public class PlayerMovement : MonoBehaviour
 
         // multiply by speed and set linear velocity
         rigidBody.linearVelocity = moveVec * moveSpeed;
-        Debug.Log("vel vec: " + rigidBody.linearVelocity + "\n");
-        
-        
-        // (moveDir * moveSpeed) + rigidBody.transform.forward;
-        // (moveDir * moveSpeed) + rigidBody.transform.forward;
+        // Debug.Log("vel vec: " + rigidBody.linearVelocity + "\n");
+
+        if (isDraggingDeer) hand.SetActive(true);
+        else hand.SetActive(false);
     }
 
     /// <summary>

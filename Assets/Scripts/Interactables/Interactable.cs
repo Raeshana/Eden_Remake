@@ -47,7 +47,7 @@ public class Interactable : MonoBehaviour
             // communicate to player that they can interact with the hit object
             if (interactable != null)
             {
-                // Debug.Log(hit.collider.name); // uncomment to see what interactable the raycast hit
+                Debug.Log(hit.collider.name); // uncomment to see what interactable the raycast hit
 
                 interactable.Hover(); 
                 UIText.text = interactable.InteractionText;

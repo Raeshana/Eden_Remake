@@ -4,21 +4,17 @@ using UnityEngine.SceneManagement;
 
 public class HotKeys : MonoBehaviour
 {
-    [HideInInspector]
-    public ShopController shopController;
+    [SerializeField] ShopController shopController;
     private SoundManager soundManager;
 
     void Awake()
     {
         // shopController = GameObject.FindWithTag("ShopController").GetComponent<ShopController>();
         soundManager = GameObject.FindWithTag("SoundManager").GetComponent<SoundManager>();
-        shopController = GameObject.FindWithTag("ShopController").GetComponent<ShopController>();
     }
 
     void Update()
     {
-        if (Keyboard.current == null) return;
-
         // Press Esc to quit
         if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
@@ -52,5 +48,10 @@ public class HotKeys : MonoBehaviour
     private void PlaySound()
     {
         soundManager.Playsfx(soundManager.click);   
+    }
+
+    private void OnDisable()
+    {
+        Debug.Log($"{gameObject.name} -> {GetType().Name} was disabled!", this);
     }
 }

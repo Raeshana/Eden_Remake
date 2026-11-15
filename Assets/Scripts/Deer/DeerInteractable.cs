@@ -1,11 +1,12 @@
 using UnityEngine;
 using System.Collections;
 using TMPro;
+using UnityEngine.UI;
 
 public class DeerInteractable : MonoBehaviour, IInteractable
 {
     [SerializeField] GameObject deerMesh;
-    private DeerState currentState = DeerState.Live;
+    public DeerState currentState;
 
     private PlayerMovement playerMovement;
     private MoneyController moneyController;
@@ -13,6 +14,7 @@ public class DeerInteractable : MonoBehaviour, IInteractable
     private string text;
 
     private SoundManager soundManager;
+    private DeerManager deerManager;
 
     void Awake()
     {
@@ -21,6 +23,9 @@ public class DeerInteractable : MonoBehaviour, IInteractable
         hungerStat = player.GetComponent<HungerStat>();  
         playerMovement = player.GetComponent<PlayerMovement>();
         soundManager = GameObject.FindWithTag("SoundManager").GetComponent<SoundManager>();   
+        deerManager = GameObject.FindWithTag("DeerManager").GetComponent<DeerManager>();
+
+        currentState = DeerState.Live;
     }
 
     public string InteractionText
@@ -34,11 +39,23 @@ public class DeerInteractable : MonoBehaviour, IInteractable
         switch (currentState)
         {
             case DeerState.Live:
+            {
+                // turn cursor red to indicate hit
+                // Debug.Log(deerManager.cursor.name);
+                // deerManager.cursor.color = Color.red;
+                Debug.Log("E to shoot deer");
                 text = "E to shoot deer";
                 break;
+            }
+                
             case DeerState.Dead:
+            {
+                // turn cursor blue to indicate 'something idk'
+                // cursor.color = Color.blue;
                 text = "E to pick up deer";
+                Debug.Log("E to pick up deer");
                 break;
+            }
             case DeerState.Dragged:
                 text = "You are dragging the deer. E to deselect.";
                 break;
@@ -74,13 +91,28 @@ public class DeerInteractable : MonoBehaviour, IInteractable
     /// <returns></returns>
     private IEnumerator ShootDeer()
     {
-        yield return new WaitForSeconds(1); 
-        // dying deer animation
         // sound of shot
         soundManager.Playsfx(soundManager.gunshot);
+        yield return new WaitForSeconds(1);
         currentState = DeerState.Dead;
         // decrease total deer
+        deerManager.decreaseNumDeer();
     }
+
+    // https://gamedevbeginner.com/glossary/how-to-lerp-rotation-in-unity/
+    // IEnumerator LerpRotation(Quaternion endValue, float duration)
+    // {
+    //     float time = 0;
+    //     Quaternion startValue = transform.rotation;
+
+    //     while (time < duration)
+    //     {
+    //         transform.rotation = Quaternion.Lerp(startValue, endValue, time / duration);
+    //         time += Time.deltaTime;
+    //         yield return null;
+    //     }
+    //     transform.rotation = endValue;
+    // }
 
     /// <summary>
     /// Hide deer by deactivating deer mesh (child)
@@ -106,9 +138,16 @@ public class DeerInteractable : MonoBehaviour, IInteractable
     {
         // deer icon false
         // deerIconGO.SetActive(false);
-        playerMovement.isDraggingDeer = false;
-        currentState = DeerState.Dead;
-        deerMesh.SetActive(true);
-        soundManager.Playsfx(soundManager.leather);
+        if (playerMovement.isDraggingDeer)
+        {
+            currentState = DeerState.Dead;
+            deerMesh.SetActive(true);
+            soundManager.Playsfx(soundManager.leather); 
+        }
+    }
+
+    private void OnDisable()
+    {
+        Debug.Log($"{gameObject.name} -> {GetType().Name} was disabled!", this);
     }
 }
