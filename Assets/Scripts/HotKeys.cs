@@ -15,8 +15,6 @@ public class HotKeys : MonoBehaviour
 
     void Update()
     {
-        if (Keyboard.current == null) return;
-
         // Press Esc to quit
         if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
@@ -32,15 +30,15 @@ public class HotKeys : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
-        // Press S to open/ close decor shop
-        if (Keyboard.current.sKey.wasPressedThisFrame)
+        // Press I to open/ close decor shop
+        if (Keyboard.current.iKey.wasPressedThisFrame)
         {   
             PlaySound();
             shopController.populateDecor();
         }
 
-        // Press I to open/ close upgrade shop
-        if (Keyboard.current.iKey.wasPressedThisFrame)
+        // Press U to open/ close upgrade shop
+        if (Keyboard.current.uKey.wasPressedThisFrame)
         {   
             PlaySound();
             shopController.populateUpgrade();
@@ -50,5 +48,10 @@ public class HotKeys : MonoBehaviour
     private void PlaySound()
     {
         soundManager.Playsfx(soundManager.click);   
+    }
+
+    private void OnDisable()
+    {
+        Debug.Log($"{gameObject.name} -> {GetType().Name} was disabled!", this);
     }
 }
