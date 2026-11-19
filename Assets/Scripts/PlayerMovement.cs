@@ -20,12 +20,12 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rigidBody;
 
     [SerializeField] GameObject hand;
-    private ShopController shopController;
+    [SerializeField] ShopController shopController;
 
     void Awake()
     {
         // Get reference to shop in scene
-        shopController = GameObject.FindWithTag("ShopController").GetComponent<ShopController>();
+        // shopController = GameObject.FindWithTag("ShopController").GetComponent<ShopController>();
         
         // Check for if player is dragging deer or not
         // To check eat/ sell interactions
