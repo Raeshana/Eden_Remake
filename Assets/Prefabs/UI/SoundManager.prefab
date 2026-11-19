@@ -48,14 +48,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SoundManager
   musicSource: {fileID: 3990293417018987}
   sfxSource: {fileID: 164647051825132685}
-  forestBackground: {fileID: 8300000, guid: 5e22961bb8cc3134db488960827dac0f, type: 3}
+  forestBackground: {fileID: 8300000, guid: 1a5a66ea6c4d23d44be029f93e169dfb, type: 3}
   sold: {fileID: 8300000, guid: 4b5f71c35fb16f342a9abcabf5ce27c0, type: 3}
-  gunshot: {fileID: 8300000, guid: 683233218dd03bf428bbd1f129433efd, type: 3}
+  gunshot: {fileID: 8300000, guid: d73af6c1a11fe1249b5f8d3b4b271949, type: 3}
   ignite: {fileID: 8300000, guid: b684a0a26b152c64dac637054ac1c8fe, type: 3}
   pot: {fileID: 8300000, guid: 0f77ef8942549ed458fce331ec7fc117, type: 3}
   leather: {fileID: 8300000, guid: 07deee6ab85cace409a6c9772ce5a199, type: 3}
   click: {fileID: 8300000, guid: 928cca3026639404b81e082e5bb9696c, type: 3}
-  eat: {fileID: 8300000, guid: 6b9d3ae1354ce0d469eb400ab638f122, type: 3}
+  eat: {fileID: 8300000, guid: 3d85aee2b3b745c4cab85396174daafd, type: 3}
+  deerDeath: {fileID: 8300000, guid: 4744881af6b9ca5429cbeb7efbb98cd3, type: 3}
+  ding: {fileID: 8300000, guid: f31274dcb31058140b2bf4be57f51bc0, type: 3}
 --- !u!1 &8880552816794956551
 GameObject:
   m_ObjectHideFlags: 0
@@ -103,7 +105,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -230,7 +232,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
   Mute: 0
