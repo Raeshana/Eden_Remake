@@ -193,7 +193,6 @@ MonoBehaviour:
   deerGO: {fileID: 0}
   moveSpeed: 10
   hand: {fileID: 3781368426778843503}
-  shopController: {fileID: 0}
 --- !u!114 &8033343147367934562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,7 +206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   maxStat: 100
-  statDecrease: 0
+  statDecrease: 1
   statSlider: {fileID: 0}
 --- !u!114 &1544845740941312571
 MonoBehaviour:
@@ -444,7 +443,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8001756786788974959
 Transform:
   m_ObjectHideFlags: 0
@@ -473,6 +472,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Deer
       objectReference: {fileID: 0}
+    - target: {fileID: 6938349718495885472, guid: 8e167e2dc00ab3f499ad0c33838cda1b, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6938349718495885472, guid: 8e167e2dc00ab3f499ad0c33838cda1b, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 9076293828127742056, guid: 8e167e2dc00ab3f499ad0c33838cda1b, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.7
@@ -487,48 +494,49 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9076293828127742056, guid: 8e167e2dc00ab3f499ad0c33838cda1b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.06
+      value: 7.128315
       objectReference: {fileID: 0}
     - target: {fileID: 9076293828127742056, guid: 8e167e2dc00ab3f499ad0c33838cda1b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -13.278704
+      value: -7.736018
       objectReference: {fileID: 0}
     - target: {fileID: 9076293828127742056, guid: 8e167e2dc00ab3f499ad0c33838cda1b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.18
+      value: 5.124211
       objectReference: {fileID: 0}
     - target: {fileID: 9076293828127742056, guid: 8e167e2dc00ab3f499ad0c33838cda1b, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7575226
+      value: 0.77356845
       objectReference: {fileID: 0}
     - target: {fileID: 9076293828127742056, guid: 8e167e2dc00ab3f499ad0c33838cda1b, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.2896855
+      value: 0.27499327
       objectReference: {fileID: 0}
     - target: {fileID: 9076293828127742056, guid: 8e167e2dc00ab3f499ad0c33838cda1b, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.5776893
+      value: -0.55086035
       objectReference: {fileID: 0}
     - target: {fileID: 9076293828127742056, guid: 8e167e2dc00ab3f499ad0c33838cda1b, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.09228753
+      value: 0.1500782
       objectReference: {fileID: 0}
     - target: {fileID: 9076293828127742056, guid: 8e167e2dc00ab3f499ad0c33838cda1b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 33.06
+      value: 36.214
       objectReference: {fileID: 0}
     - target: {fileID: 9076293828127742056, guid: 8e167e2dc00ab3f499ad0c33838cda1b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -78.666
+      value: -72.556
       objectReference: {fileID: 0}
     - target: {fileID: 9076293828127742056, guid: 8e167e2dc00ab3f499ad0c33838cda1b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -13.446
+      value: -5.032
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7209871933940746749, guid: 8e167e2dc00ab3f499ad0c33838cda1b, type: 3}
     - {fileID: 6188543286914436473, guid: 8e167e2dc00ab3f499ad0c33838cda1b, type: 3}
     - {fileID: 6533016612351848539, guid: 8e167e2dc00ab3f499ad0c33838cda1b, type: 3}
+    - {fileID: 5853488182053798658, guid: 8e167e2dc00ab3f499ad0c33838cda1b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

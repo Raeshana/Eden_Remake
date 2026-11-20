@@ -160,8 +160,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PanInteractable
   meatGO: {fileID: 734177923642924362}
   meatMeshRenderer: {fileID: 9077667941819937527}
-  cookedMeat: {fileID: 0}
-  rawMeat: {fileID: 0}
+  cookedMeat: {fileID: 2100000, guid: bb94dfbb7615b4f8bb384faedcbc8456, type: 2}
+  rawMeat: {fileID: 2100000, guid: d8414113386a34750bcfc9141f7a9101, type: 2}
+  hungerIncrease: 20
 --- !u!1001 &4740868164172082579
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -87,7 +87,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c38e588a70f2fcc4988451ffaf1ce380, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DeerInteractable
-  deerMesh: {fileID: 0}
+  deerMesh: {fileID: 3094035738286961620}
   currentState: 0
 --- !u!114 &7209871933940746749
 MonoBehaviour:
@@ -273,5 +273,10 @@ PrefabInstance:
 --- !u!4 &2430793370118220142 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e0ae2eee7b8fa49ee9e5ca071626c4bb, type: 3}
+  m_PrefabInstance: {fileID: 2752069691030113925}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3094035738286961620 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e0ae2eee7b8fa49ee9e5ca071626c4bb, type: 3}
   m_PrefabInstance: {fileID: 2752069691030113925}
   m_PrefabAsset: {fileID: 0}
