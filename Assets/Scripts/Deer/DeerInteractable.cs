@@ -16,6 +16,11 @@ public class DeerInteractable : MonoBehaviour, IInteractable
     private SoundManager soundManager;
     private DeerManager deerManager;
 
+    private bool doneSpeaking = false;
+    private bool doneSpeakingShoot = false;
+    private bool doneSpeakingCarry = false;
+    private bool doneSpeakingCarrying = false;
+
     void Awake()
     {
         moneyController = GameObject.FindWithTag("MoneyController").GetComponent<MoneyController>();   
@@ -43,8 +48,13 @@ public class DeerInteractable : MonoBehaviour, IInteractable
                 // turn cursor red to indicate hit
                 // Debug.Log(deerManager.cursor.name);
                 // deerManager.cursor.color = Color.red;
-                Debug.Log("E to shoot deer");
-                text = "E to shoot deer";
+                Debug.Log("Press E to shoot the deer.");
+                text = "Press E to shoot the deer.";
+                if (!doneSpeakingShoot)
+                {
+                    soundManager.PlayAssistantVoice(soundManager.shoot); //audio
+                    doneSpeakingShoot = true;
+                }
                 break;
             }
 
@@ -58,13 +68,23 @@ public class DeerInteractable : MonoBehaviour, IInteractable
             {
                 // turn cursor blue to indicate 'something idk'
                 // cursor.color = Color.blue;
-                text = "E to pick up deer";
-                Debug.Log("E to pick up deer");
+                text = "Press E to pick up the deer.";
+                Debug.Log("Press E to pick up the deer.");
+                if (!doneSpeakingCarry)
+                {
+                    soundManager.PlayAssistantVoice(soundManager.carry); //audio
+                    doneSpeakingCarry = true;
+                }
                 break;
             }
 
             case DeerState.Dragged:
-                text = "You are dragging the deer. E to deselect.";
+                text = "You are carrying the deer. Press E to deselect.";
+                if (!doneSpeakingCarrying)
+                {
+                    soundManager.PlayAssistantVoice(soundManager.carrying); //audio
+                    doneSpeakingCarrying = true;
+                }
                 break;
         }
         
@@ -116,6 +136,10 @@ public class DeerInteractable : MonoBehaviour, IInteractable
         // deer dying noises
         soundManager.Playsfx(soundManager.deerDeath);
 
+        // assistant
+        int val = Random.Range(0, soundManager.deerHit.Length-1);
+        soundManager.PlayAssistantVoice(soundManager.deerHit[val]); //audio
+
         yield return new WaitForSeconds(1.5f);
         currentState = DeerState.Dead;
     }
@@ -147,7 +171,11 @@ public class DeerInteractable : MonoBehaviour, IInteractable
         playerMovement.deerGO = gameObject;
         currentState = DeerState.Dragged;
         deerMesh.SetActive(false);
-        soundManager.Playsfx(soundManager.leather);
+        if (!doneSpeaking)
+        {
+            soundManager.PlayAssistantVoice(soundManager.leather);
+            doneSpeaking = true;
+        }
     }
 
     /// <summary>
@@ -165,11 +193,12 @@ public class DeerInteractable : MonoBehaviour, IInteractable
             deerMesh.SetActive(true);
             playerMovement.isDraggingDeer = false;
             soundManager.Playsfx(soundManager.leather); 
+            // soundManager.PlayAssistantVoice(soundManager.released); //audio
         }
     }
 
-    private void OnDisable()
-    {
-        Debug.Log($"{gameObject.name} -> {GetType().Name} was disabled!", this);
-    }
+    // private void OnDisable()
+    // {
+    //     Debug.Log($"{gameObject.name} -> {GetType().Name} was disabled!", this);
+    // }
 }

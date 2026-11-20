@@ -49,7 +49,7 @@ public class ShopSlotController : MonoBehaviour, IPointerEnterHandler, IPointerE
             // If the item is an upgrade, decrease hunger rate
             if (shopItemPopulated.isUpgrade)
             {
-                hungerStat.DecreaseStatRate(shopItemPopulated.saturationModifier);                    
+                hungerStat.DecreaseStatDepletion(shopItemPopulated.saturationModifier);                    
             }
             // Disable button
             itemButton.interactable = false; 

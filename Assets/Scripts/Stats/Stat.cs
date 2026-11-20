@@ -6,8 +6,8 @@ public class Stat : MonoBehaviour
 {
     [Tooltip("Set initial max stat here")]
     public float maxStat;
-    [Tooltip("Set how many seconds it takes to lose 1 stat")]
-    public float statRate;
+    [Tooltip("Set how much of stat is lost every second")]
+    public float statDecrease;
     [Tooltip("Reference the stat slider here")]
     [HideInInspector]
     public Slider statSlider;
@@ -34,9 +34,9 @@ public class Stat : MonoBehaviour
     {
         while (true)
         {
-            currStat--;
+            currStat -= statDecrease;
             statSlider.value = currStat;
-            yield return new WaitForSeconds(statRate);   
+            yield return new WaitForSeconds(1f);   
         }
     }
 
@@ -46,18 +46,28 @@ public class Stat : MonoBehaviour
     /// <param name="val">Value to increase current stat by</param>
     public void IncreaseCurrStat(float val)
     {
+        if (val == 0)
+        {
+            Debug.Log("Current stat is being increased by 0");
+            return;
+        }
         currStat += val;
         currStat = (currStat > maxStat) ? maxStat : currStat;
         statSlider.value = currStat;
     }
 
     /// <summary>
-    /// Decrease stat decrement to 1 every statRate seconds
+    /// Change stat decrement
     /// </summary>
-    /// <param name="newRate">Lose 1 current stat every newRate seconds</param>
-    public void DecreaseStatRate(float newRate)
+    /// <param name="newDecrease">Lose new decrease stat every second</param>
+    public void DecreaseStatDepletion(float newDecrease)
     {
-        statRate = newRate;
+        if (newDecrease <= statDecrease)
+        {
+            Debug.Log("You are not decreasing the stat depletion!");
+            return;
+        }
+        statDecrease = newDecrease;
     }
 
     /// <summary>
