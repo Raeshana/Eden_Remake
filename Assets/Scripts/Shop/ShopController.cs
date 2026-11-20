@@ -27,9 +27,8 @@ public class ShopController : MonoBehaviour
     private Stat satisfactionStat;
 
     private int pageNum;
-    [HideInInspector]
-    public bool isPaused;
-    UnityEvent shopIsOpen;
+    private bool isPaused;
+    // UnityEvent shopIsOpen;
 
     void Awake()
     {
@@ -68,11 +67,10 @@ public class ShopController : MonoBehaviour
         // Hide shop when game starts
         isPaused = true;
         toggleShop();
+        // if (shopIsOpen == null)
+        //     shopIsOpen = new UnityEvent();
 
-        if (shopIsOpen == null)
-            shopIsOpen = new UnityEvent();
-
-        shopIsOpen.AddListener(toggleShop);
+        // shopIsOpen.AddListener(toggleShop);
     }
 
     public void populateDecor()

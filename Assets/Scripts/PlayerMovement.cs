@@ -20,7 +20,6 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rigidBody;
 
     [SerializeField] GameObject hand;
-    [SerializeField] ShopController shopController;
 
     void Awake()
     {
@@ -31,6 +30,12 @@ public class PlayerMovement : MonoBehaviour
         // To check eat/ sell interactions
         isDraggingDeer = false;
         rigidBody = GetComponent<Rigidbody>();
+
+        // // Listen for shop opened event
+        // if (isShopOpen == null)
+        //     isShopOpen = new UnityEvent();
+
+        // isShopOpen.AddListener(shopController.toggleShop);
     }  
 
     // update every fixed duration
@@ -75,19 +80,12 @@ public class PlayerMovement : MonoBehaviour
 
     void OnLook(InputValue lookValue)
     {
-        if (!shopController.isPaused)
-        {
-            lookVector = lookValue.Get<Vector2>();
-        }
-        else
-        {
-            lookVector = new Vector3(0, 0, 0);
-        }
+        lookVector = lookValue.Get<Vector2>();
     }
 
     void OnInteract(InputValue interactValue)
     {
-        if (!shopController.isPaused && interactValue.isPressed)
+        if (interactValue.isPressed) 
         {
             // Debug.Log("Interacting");
             GetComponentInChildren<Interactable>().canInteract = true;
@@ -98,13 +96,6 @@ public class PlayerMovement : MonoBehaviour
     // Ref https://youtu.be/ONlMEZs9Rgw?si=2MnTXW74qjHer4EH
    void OnMove(InputValue input)
     {
-        if (!shopController.isPaused)
-        {
-            moveDir = input.Get<Vector2>();
-        }
-        else
-        {
-            moveDir = new Vector3(0,0,0);
-        }
+        moveDir = input.Get<Vector2>();
     }
 }

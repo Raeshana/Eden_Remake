@@ -66,11 +66,9 @@ public class DeerAI : MonoBehaviour
                 }
                 break;
             }
-
-            case DeerState.Dying:
-                break;
-
             case DeerState.Dead:
+                // play death animation
+                StartCoroutine(LerpRotation(Quaternion.Euler(new Vector3(90,0,0)), 1));
                 break;
 
             case DeerState.Dragged:

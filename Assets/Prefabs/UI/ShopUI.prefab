@@ -64,7 +64,6 @@ MonoBehaviour:
   - {fileID: 1826205715290016030}
   - {fileID: 5222522085009225286}
   numSlots: 10
-  emptyShopItem: {fileID: 11400000, guid: 0a7c47711442c134990a6f13f2353cf1, type: 2}
   shopItems:
   - {fileID: 11400000, guid: 6f350331058aff04396a7ad57018de99, type: 2}
   - {fileID: 11400000, guid: be2cc1259815cd1488c9c2b7a85a286a, type: 2}
@@ -78,7 +77,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0a7c47711442c134990a6f13f2353cf1, type: 2}
   shopText: {fileID: 8262700775797033518}
   crossHairs: {fileID: 0}
-  isPaused: 0
 --- !u!114 &4745596581306788183
 MonoBehaviour:
   m_ObjectHideFlags: 0

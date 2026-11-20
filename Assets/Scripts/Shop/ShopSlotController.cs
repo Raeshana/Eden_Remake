@@ -22,8 +22,6 @@ public class ShopSlotController : MonoBehaviour, IPointerEnterHandler, IPointerE
     [Header("Shopitem prefab used for debugging")]
     [SerializeField] ShopItem shopItemPopulated;
 
-    [SerializeField] TMP_Text text;
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -59,7 +57,6 @@ public class ShopSlotController : MonoBehaviour, IPointerEnterHandler, IPointerE
         }
         else
         {
-            text.text = "You have inadequate money to purchase " + shopItemPopulated.name;
             Debug.Log("You have inadequate money to purchase " + shopItemPopulated.name);
             // play cant buy sound
             // shake text animation
@@ -91,7 +88,7 @@ public class ShopSlotController : MonoBehaviour, IPointerEnterHandler, IPointerE
     public void OnPointerEnter(PointerEventData pointerEventData)
     {
         //Output to console the GameObject's name and the following message
-        // Debug.Log("Cursor Entering " + name + " GameObject");
+        Debug.Log("Cursor Entering " + name + " GameObject");
         toolTip.gameObject.SetActive(true);
     }
 
@@ -100,7 +97,7 @@ public class ShopSlotController : MonoBehaviour, IPointerEnterHandler, IPointerE
     public void OnPointerExit(PointerEventData pointerEventData)
     {
         //Output to console the GameObject's name and the following message
-        // Debug.Log("Cursor Entering " + name + " GameObject");
+        Debug.Log("Cursor Entering " + name + " GameObject");
         toolTip.gameObject.SetActive(false);
     }
 }
