@@ -16,6 +16,11 @@ public class DeerInteractable : MonoBehaviour, IInteractable
     private SoundManager soundManager;
     private DeerManager deerManager;
 
+    private bool doneSpeaking = false;
+    private bool doneSpeakingShoot = false;
+    private bool doneSpeakingCarry = false;
+    private bool doneSpeakingCarrying = false;
+
     void Awake()
     {
         moneyController = GameObject.FindWithTag("MoneyController").GetComponent<MoneyController>();   
@@ -43,8 +48,19 @@ public class DeerInteractable : MonoBehaviour, IInteractable
                 // turn cursor red to indicate hit
                 // Debug.Log(deerManager.cursor.name);
                 // deerManager.cursor.color = Color.red;
-                Debug.Log("E to shoot deer");
-                text = "E to shoot deer";
+                Debug.Log("Press E to shoot the deer.");
+                text = "Press E to shoot the deer.";
+                if (!doneSpeakingShoot)
+                {
+                    soundManager.PlayAssistantVoice(soundManager.shoot); //audio
+                    doneSpeakingShoot = true;
+                }
+                break;
+            }
+
+            case DeerState.Dying:
+            {
+                text = "Nice shot!";
                 break;
             }
                 
@@ -52,12 +68,23 @@ public class DeerInteractable : MonoBehaviour, IInteractable
             {
                 // turn cursor blue to indicate 'something idk'
                 // cursor.color = Color.blue;
-                text = "E to pick up deer";
-                Debug.Log("E to pick up deer");
+                text = "Press E to pick up the deer.";
+                Debug.Log("Press E to pick up the deer.");
+                if (!doneSpeakingCarry)
+                {
+                    soundManager.PlayAssistantVoice(soundManager.carry); //audio
+                    doneSpeakingCarry = true;
+                }
                 break;
             }
+
             case DeerState.Dragged:
-                text = "You are dragging the deer. E to deselect.";
+                text = "You are carrying the deer. Press E to deselect.";
+                if (!doneSpeakingCarrying)
+                {
+                    soundManager.PlayAssistantVoice(soundManager.carrying); //audio
+                    doneSpeakingCarrying = true;
+                }
                 break;
         }
         
@@ -72,10 +99,16 @@ public class DeerInteractable : MonoBehaviour, IInteractable
                 Debug.Log("hit live deer -> deer is now dead");
                 StartCoroutine(ShootDeer());
                 break;
+
+            case DeerState.Dying:
+                // play death animation
+                break;
+
             case DeerState.Dead:
                 Debug.Log("hit dead deer -> deer is now being dragged");
                 DragDeer();
                 break;
+                
             case DeerState.Dragged:
                 Debug.Log("dropped deer -> released, eaten or sold");
                 ReleaseDeer();
@@ -85,34 +118,46 @@ public class DeerInteractable : MonoBehaviour, IInteractable
 
     /// <summary>
     /// Wait 1 second before changing deer label
-    /// to avoid instant deer drag
+    /// to dead to avoid instant deer drag
     /// Set lastShotFired to current time
     /// </summary>
     /// <returns></returns>
     private IEnumerator ShootDeer()
     {
+        // change state to dying so player cannot shoot it again
+        currentState = DeerState.Dying;
+
         // sound of shot
         soundManager.Playsfx(soundManager.gunshot);
-        yield return new WaitForSeconds(1);
-        currentState = DeerState.Dead;
+        // death animation
+        StartCoroutine(LerpRotation(Quaternion.Euler(new Vector3(90,0,0)), 1));
         // decrease total deer
         deerManager.decreaseNumDeer();
+        // deer dying noises
+        soundManager.Playsfx(soundManager.deerDeath);
+
+        // assistant
+        int val = Random.Range(0, soundManager.deerHit.Length-1);
+        soundManager.PlayAssistantVoice(soundManager.deerHit[val]); //audio
+
+        yield return new WaitForSeconds(1.5f);
+        currentState = DeerState.Dead;
     }
 
     // https://gamedevbeginner.com/glossary/how-to-lerp-rotation-in-unity/
-    // IEnumerator LerpRotation(Quaternion endValue, float duration)
-    // {
-    //     float time = 0;
-    //     Quaternion startValue = transform.rotation;
+    IEnumerator LerpRotation(Quaternion endValue, float duration)
+    {
+        float time = 0;
+        Quaternion startValue = transform.rotation;
 
-    //     while (time < duration)
-    //     {
-    //         transform.rotation = Quaternion.Lerp(startValue, endValue, time / duration);
-    //         time += Time.deltaTime;
-    //         yield return null;
-    //     }
-    //     transform.rotation = endValue;
-    // }
+        while (time < duration)
+        {
+            transform.rotation = Quaternion.Lerp(startValue, endValue, time / duration);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        transform.rotation = endValue;
+    }
 
     /// <summary>
     /// Hide deer by deactivating deer mesh (child)
@@ -126,7 +171,11 @@ public class DeerInteractable : MonoBehaviour, IInteractable
         playerMovement.deerGO = gameObject;
         currentState = DeerState.Dragged;
         deerMesh.SetActive(false);
-        soundManager.Playsfx(soundManager.leather);
+        if (!doneSpeaking)
+        {
+            soundManager.PlayAssistantVoice(soundManager.leather);
+            doneSpeaking = true;
+        }
     }
 
     /// <summary>
@@ -142,12 +191,14 @@ public class DeerInteractable : MonoBehaviour, IInteractable
         {
             currentState = DeerState.Dead;
             deerMesh.SetActive(true);
+            playerMovement.isDraggingDeer = false;
             soundManager.Playsfx(soundManager.leather); 
+            // soundManager.PlayAssistantVoice(soundManager.released); //audio
         }
     }
 
-    private void OnDisable()
-    {
-        Debug.Log($"{gameObject.name} -> {GetType().Name} was disabled!", this);
-    }
+    // private void OnDisable()
+    // {
+    //     Debug.Log($"{gameObject.name} -> {GetType().Name} was disabled!", this);
+    // }
 }

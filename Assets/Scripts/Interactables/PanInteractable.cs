@@ -12,7 +12,6 @@ public class PanInteractable : MonoBehaviour, IInteractable
     private enum state
     {
         empty,
-        raw,
         cooking,
         cooked,
     }
@@ -21,6 +20,7 @@ public class PanInteractable : MonoBehaviour, IInteractable
     [SerializeField] MeshRenderer meatMeshRenderer;
     [SerializeField] Material cookedMeat;
     [SerializeField] Material rawMeat;
+    [SerializeField] float hungerIncrease;
     // private DeerManager deerManager;
 
     private PlayerMovement playerMovement;
@@ -29,11 +29,12 @@ public class PanInteractable : MonoBehaviour, IInteractable
     private state currState;
 
     // keep track of how long deer has been cooking for
-    private bool startTimer; // set in CookDeer
     private float elapsed; // calculated in update
     private float inPanTime; // set in CookDeers
 
     private SoundManager soundManager; 
+
+    private bool doneSpeaking = false;
 
     void Awake()
     {
@@ -73,15 +74,12 @@ public class PanInteractable : MonoBehaviour, IInteractable
         switch (currState)
         {
             case state.empty:
-                PlaceDeer(); 
-                break;
-
-            case state.raw:
-                CookDeer();
+                CookDeer(); 
                 break;
             
             case state.cooking:
-                text = "The deer is cooking";
+                // player feedback
+                text = "The deer is cooking"; //visual
                 break;
 
             case state.cooked:
@@ -103,23 +101,21 @@ public class PanInteractable : MonoBehaviour, IInteractable
             case state.empty:
                 if (playerMovement.isDraggingDeer)
                 {
-                    text = "E to place deer in pan";
-                }
-                break;
-            
-            case state.raw:
-                if (!startTimer)
-                {
-                    text = "E to turn on stove";
+                    text = "Press E to cook the deer."; //visual
+                    if (!doneSpeaking)
+                    {
+                        soundManager.PlayAssistantVoice(soundManager.cook); //audio
+                        doneSpeaking = true;
+                    }
                 }
                 break;
 
             case state.cooking:
-                text = "The deer is cooking";
+                text = "The deer is cooking."; //visual
                 break;
 
             case state.cooked:
-                text = "E to eat cooked deer";
+                text = "Press E to eat the deer.";//visual
                 break;
         }
     }
@@ -137,54 +133,48 @@ public class PanInteractable : MonoBehaviour, IInteractable
     /// pan state changes from empty to raw,
     /// the mesh is changed to reflect that (player feedback)
     /// </summary>
-    private void PlaceDeer()
+    private void CookDeer()
     {   
         if (playerMovement.isDraggingDeer)
         {
             // thing to display/ player feedback
-            text = "Deer placed in pan";
             meatGO.SetActive(true);
             meatMeshRenderer.material = rawMeat;
 
-            // change deer state -> raw
+            // change deer state -> cooking
             playerMovement.isDraggingDeer = false;
             Destroy(playerMovement.deerGO); // would no longer exist
-            currState = state.raw;
+            currState = state.cooking;
             // Debug.Log(currState);
             // change mesh
 
             // sfx
-            soundManager.Playsfx(soundManager.pot);
+            
+
+            // player feedback
+            text = "You are cooking the deer."; // visual
+            //sfx
+            StartCoroutine(CookDeerSFX());
+            inPanTime = Time.time;
+            currState = state.cooking;
 
         }       
         else
         {
             // Debug.Log("Can click E when not carrying deer on empty pan");
-            text = "You are not currently carrying any deer";
+            text = "You are not currently carrying any deer"; // visual
+            soundManager.PlayAssistantVoice(soundManager.notCarrying); //audio
         } 
     }
 
-    /// <summary>
-    /// Assertion: current state is raw
-    /// If the pan has been in the raw state for more than 3 seconds,
-    /// Change the state to cooked
-    /// Change mesh to reflect that (player feedback)
-    /// Change state to cooking during those 3 seconds
-    /// </summary>
-    /// <param name="inPanTime"></param>
-    private void CookDeer()
-    {   
-        // player feedback
-        text = "Stove turned on- deer cooking";
-
-        // Record the time a deer is set to be cooked
-        inPanTime = Time.time;
-        currState = state.cooking;
-
-        //sfx - play stove turning on sound
+    private IEnumerator CookDeerSFX()
+    {
+        soundManager.Playsfx(soundManager.pot);
+        yield return new WaitForSeconds(0.5f);
         soundManager.Playsfx(soundManager.ignite);
-
-        // vfx- fire
+        yield return new WaitForSeconds(0.5f);
+        soundManager.PlayAssistantVoice(soundManager.cooking); //audio
+        yield return new WaitForSeconds(0.5f);
     }
 
     /// <summary>
@@ -194,13 +184,12 @@ public class PanInteractable : MonoBehaviour, IInteractable
     private void CookedDeer()
     {
         // player feedback
-        text = "Deer is cooked";
+        text = "Deer is cooked"; // visual
+        soundManager.Playsfx(soundManager.ding); // sfx
+        soundManager.PlayAssistantVoice(soundManager.cooked); // audio
 
         // change mesh
         meatMeshRenderer.material = cookedMeat;
-
-        //sfx - play oven ding
-        // soundManager.Playsfx(soundManager.oven);
     }
 
     /// <summary>
@@ -212,19 +201,20 @@ public class PanInteractable : MonoBehaviour, IInteractable
     private void EatDeer()
     {
         // player feedback
-        text = "You have eaten the deer";
-        // play eating sound
+        text = "You have eaten the deer"; // visual
+        soundManager.Playsfx(soundManager.eat); // sfx
+        // soundManager.PlayAssistantVoice(soundManager.eaten); // audio
 
         // eating increases the player's 'fullness'
-        hungerStat.IncreaseCurrStat(5); 
+        hungerStat.IncreaseCurrStat(hungerIncrease); 
 
         // update state
         currState = state.empty;
 
-        //sfx
-        soundManager.Playsfx(soundManager.eat);
-
         // hide meat mesh
         meatGO.SetActive(false);
+
+        // reset doneSpeaking
+        doneSpeaking = false;
     }
 }
