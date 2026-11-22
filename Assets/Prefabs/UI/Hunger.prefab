@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.15294118, g: 0.9058824, b: 0.92549026, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -196,6 +196,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: HungerSlider
       objectReference: {fileID: 0}
+    - target: {fileID: 5033152929210217246, guid: 6f539949dcb02c645950cb20020024b0, type: 3}
+      propertyPath: m_Color.b
+      value: 0.92549026
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033152929210217246, guid: 6f539949dcb02c645950cb20020024b0, type: 3}
+      propertyPath: m_Color.g
+      value: 0.9058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033152929210217246, guid: 6f539949dcb02c645950cb20020024b0, type: 3}
+      propertyPath: m_Color.r
+      value: 0.15294118
+      objectReference: {fileID: 0}
     - target: {fileID: 5747994414310438744, guid: 6f539949dcb02c645950cb20020024b0, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -215,6 +227,18 @@ PrefabInstance:
     - target: {fileID: 6239127923559813009, guid: 6f539949dcb02c645950cb20020024b0, type: 3}
       propertyPath: m_AnchorMin.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6287712480149225832, guid: 6f539949dcb02c645950cb20020024b0, type: 3}
+      propertyPath: m_Color.b
+      value: 0.92549026
+      objectReference: {fileID: 0}
+    - target: {fileID: 6287712480149225832, guid: 6f539949dcb02c645950cb20020024b0, type: 3}
+      propertyPath: m_Color.g
+      value: 0.9058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 6287712480149225832, guid: 6f539949dcb02c645950cb20020024b0, type: 3}
+      propertyPath: m_Color.r
+      value: 0.15294118
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
