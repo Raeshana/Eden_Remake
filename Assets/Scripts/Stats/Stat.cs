@@ -14,6 +14,13 @@ public class Stat : MonoBehaviour
 
     [HideInInspector] [Tooltip("Current stat value")]
     private float currStat;
+
+    private ShopController shopController;
+
+    public void Awake()
+    {
+        shopController = GameObject.FindWithTag("ShopController").GetComponent<ShopController>();
+    }
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void InitializeStat()
@@ -26,18 +33,30 @@ public class Stat : MonoBehaviour
         StartCoroutine(StatCoroutine());
     }
 
+    public void Update()
+    {
+        if (shopController.isPaused)
+        {
+            
+        }
+    }
+
     /// <summary>
     /// Decrease current stat by 1 every statRate seconds
+    /// Only if the game is not 'paused'
     /// </summary>
     /// <returns></returns>
     private IEnumerator StatCoroutine()
     {
-        while (true)
+        while (!shopController.isPaused)
         {
             currStat -= statDecrease;
             statSlider.value = currStat;
             yield return new WaitForSeconds(1f);   
         }
+        
+        // just wait for it to be unpaused
+        StartCoroutine(StatCoroutine());
     }
 
     /// <summary>

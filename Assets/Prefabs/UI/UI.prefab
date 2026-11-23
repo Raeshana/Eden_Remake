@@ -765,6 +765,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoneyController
   playerMoney: 100
+  moneyText: {fileID: 7239096544715385545}
 --- !u!1 &6008784401229921668
 GameObject:
   m_ObjectHideFlags: 0
@@ -1318,6 +1319,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4745596581306788183, guid: f0ab63134cb6b5746acc755184be132e, type: 3}
+      propertyPath: moneyText
+      value: 
+      objectReference: {fileID: 6543582822525296842}
     - target: {fileID: 7031455752272060494, guid: f0ab63134cb6b5746acc755184be132e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1474,7 +1479,8 @@ PrefabInstance:
       propertyPath: emptyShopItem
       value: 
       objectReference: {fileID: 11400000, guid: 0a7c47711442c134990a6f13f2353cf1, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4745596581306788183, guid: f0ab63134cb6b5746acc755184be132e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1484,6 +1490,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7031455752272060494, guid: f0ab63134cb6b5746acc755184be132e, type: 3}
   m_PrefabInstance: {fileID: 2910587030290164452}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6543582822525296842 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8262700775797033518, guid: f0ab63134cb6b5746acc755184be132e, type: 3}
+  m_PrefabInstance: {fileID: 2910587030290164452}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &3161758743787551045
 PrefabInstance:
   m_ObjectHideFlags: 0

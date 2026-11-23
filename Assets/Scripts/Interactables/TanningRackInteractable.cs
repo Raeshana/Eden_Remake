@@ -27,7 +27,7 @@ public class TanningRackInteractable : MonoBehaviour, IInteractable
     }
 
     // interactable
-    public void Hover()
+    public void Hover(Vector3 hitPoint)
     {
         if (playerMovement.isDraggingDeer)
         {
@@ -41,7 +41,7 @@ public class TanningRackInteractable : MonoBehaviour, IInteractable
     }
 
     // interactable
-    public void Interact()
+    public void Interact(Vector3 hitPoint)
     {
         if (playerMovement.isDraggingDeer) SellDeer();
     }

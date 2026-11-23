@@ -27,7 +27,7 @@ public class ShopController : MonoBehaviour
     private Stat satisfactionStat;
 
     private int pageNum;
-    private bool isPaused;
+    public bool isPaused;
     // UnityEvent shopIsOpen;
 
     void Awake()

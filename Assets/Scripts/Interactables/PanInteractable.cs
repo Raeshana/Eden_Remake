@@ -94,7 +94,7 @@ public class PanInteractable : MonoBehaviour, IInteractable
     }
 
     // interactable
-    public void Hover()
+    public void Hover(Vector3 hitPoint)
     {
         switch (currState)
         {
@@ -121,7 +121,7 @@ public class PanInteractable : MonoBehaviour, IInteractable
     }
 
     // interactable
-    public void Interact()
+    public void Interact(Vector3 hitPoint)
     {
         panStateManager();
     }

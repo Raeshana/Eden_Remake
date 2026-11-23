@@ -6,12 +6,10 @@ public class MoneyController : MonoBehaviour
     [Tooltip("Amount of money the player currently has")]
     public float playerMoney;
 
-    private TMP_Text moneyText;
+    [SerializeField] TMP_Text moneyText;
 
     void Awake()
     {
-        // get money text box
-        moneyText = GetComponent<TMP_Text>();
     }
 
     void Start()

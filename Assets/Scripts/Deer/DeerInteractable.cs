@@ -39,7 +39,7 @@ public class DeerInteractable : MonoBehaviour, IInteractable
     }
 
     // interactable
-    public void Hover()
+    public void Hover(Vector3 hitPoint)
     {
         switch (currentState)
         {
@@ -91,7 +91,7 @@ public class DeerInteractable : MonoBehaviour, IInteractable
     }
 
     // interactable
-    public void Interact()
+    public void Interact(Vector3 hitPoint)
     {
         switch (currentState)
         {

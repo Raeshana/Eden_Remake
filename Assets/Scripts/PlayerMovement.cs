@@ -21,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] GameObject hand;
 
+    private ShopController shopController;
+
     void Awake()
     {
         // Get reference to shop in scene
@@ -30,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
         // To check eat/ sell interactions
         isDraggingDeer = false;
         rigidBody = GetComponent<Rigidbody>();
+        shopController = GameObject.FindWithTag("ShopController").GetComponent<ShopController>();
 
         // // Listen for shop opened event
         // if (isShopOpen == null)
@@ -78,24 +81,41 @@ public class PlayerMovement : MonoBehaviour
         Cursor.visible = false;
     }
 
+    // Only accept look vector when game is not 'paused'
     void OnLook(InputValue lookValue)
     {
-        lookVector = lookValue.Get<Vector2>();
-    }
-
-    void OnInteract(InputValue interactValue)
-    {
-        if (interactValue.isPressed) 
+        if (!shopController.isPaused)
         {
-            // Debug.Log("Interacting");
-            GetComponentInChildren<Interactable>().canInteract = true;
+            lookVector = lookValue.Get<Vector2>();
+        }
+        else
+        {
+            lookVector = new Vector3(0,0,0);
         }
     }
 
+    // void OnInteract(InputValue interactValue)
+    // {
+    //     if (interactValue.isPressed) 
+    //     {
+    //         // Debug.Log("Interacting");
+    //         GetComponentInChildren<Interactable>().canInteract = true;
+    //     }
+    // }
+
+    // Only accept move vector when game is not 'paused'
     // Ref https://docs.unity.com/en-us/engine/6000.0/script-reference/unityengine/charactercontroller/move
     // Ref https://youtu.be/ONlMEZs9Rgw?si=2MnTXW74qjHer4EH
    void OnMove(InputValue input)
     {
-        moveDir = input.Get<Vector2>();
+        if (!shopController.isPaused)
+        {
+            moveDir = input.Get<Vector2>();
+        }
+        else
+        {
+            moveDir = new Vector3(0,0,0);
+        }
+        
     }
 }

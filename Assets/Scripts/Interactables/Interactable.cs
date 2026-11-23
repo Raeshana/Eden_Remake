@@ -13,8 +13,8 @@ public class Interactable : MonoBehaviour
     // Used in player movement 'on interact' to determine if the raycast
     // intersects with an interactable 
     // (which then triggers the interact function on the interactable)
-    [HideInInspector]
-    public bool canInteract;
+    // [HideInInspector]
+    // public bool canInteract;
 
     // Do something to the UI when the player interacts/ can interact
     private TMP_Text UIText;
@@ -24,7 +24,7 @@ public class Interactable : MonoBehaviour
     void Awake()
     {
         // uiContainer.SetActive(false);
-        canInteract = false;
+        // canInteract = false;
         UIText = GameObject.FindWithTag("UIText").GetComponent<TMP_Text>();
         UIText.text = " ";
     }
@@ -34,7 +34,7 @@ public class Interactable : MonoBehaviour
     {
         // reset to null on every frame 
         IInteractable interactable = null;
-
+        
         // Does the ray intersect the interactables layer?
         if (Physics.Raycast(transform.position, transform.forward, out hit, 100f, raycastLayers))
         {
@@ -49,14 +49,15 @@ public class Interactable : MonoBehaviour
             {
                 Debug.Log(hit.collider.name); // uncomment to see what interactable the raycast hit
 
-                interactable.Hover(); 
+                interactable.Hover(hit.point); 
                 UIText.text = interactable.InteractionText;
 
                 // while player is looking at interactble, interact on pressing 'e'
-                if (canInteract)
+                // or click with left mouse
+                if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.E))
                 {
-                    interactable.Interact();
-                    canInteract = false;
+                    interactable.Interact(hit.point);
+                    // canInteract = false;
                 }
             }   
         }
