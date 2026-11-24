@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GridInteractable : MonoBehaviour
+public class GridInteractable : MonoBehaviour, IInteractable
 {
     private enum state
     {
@@ -12,11 +12,12 @@ public class GridInteractable : MonoBehaviour
     public GameObject cube, blockPrefab;
     public Grid grid;
     private state currState;
+    public bool isPlaced;
     
     void Awake()
     {
-        currState = state.placeMode;
-        Debug.Log("Place mode on");
+        currState = state.notPlaceMode;
+        Debug.Log("Place mode off");
     }
 
     public string InteractionText
@@ -30,20 +31,27 @@ public class GridInteractable : MonoBehaviour
         
     }
 
+    public void EnterPlaceMode()
+    {
+        currState = state.placeMode;
+    }
+
     // interactable
     public void Hover(Vector3 hitPoint)
     {
+        // Debug.Log("hover " + hitPoint + " state " + currState);
         switch (currState)
         {
             case state.placeMode:
-                Debug.Log("In place mode");
+                // Debug.Log("In place mode");
                 text = "Press E to place object";
                 Vector3Int cellPosition = grid.WorldToCell(hitPoint);
                 cube.transform.position = grid.GetCellCenterWorld(cellPosition);
                 break;
 
             case state.notPlaceMode:
-                Debug.Log("Not in place mode");
+                // Debug.Log("Not in place mode");
+                text = "";
                 break;
         }
     }
@@ -51,15 +59,22 @@ public class GridInteractable : MonoBehaviour
     // interactable
     public void Interact(Vector3 hitPoint)
     {
+        // Debug.Log("interqact " + hitPoint + " state " + currState);
+
         switch (currState)
         {
             case state.placeMode:
                 
                 Instantiate(blockPrefab, cube.transform.position, Quaternion.identity);
                 text = "Object placed.";
+                // transition to not place mode
+                isPlaced = true;
+                currState = state.notPlaceMode;
+                Debug.Log("not in place mode anymore");
                 break;
             
             case state.notPlaceMode:
+                text = "";
                 break;
         }
     }

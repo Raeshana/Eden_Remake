@@ -30,19 +30,19 @@ public class HotKeys : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
-        // Press I to open/ close decor shop
-        if (Keyboard.current.iKey.wasPressedThisFrame)
+        // Press P to open/ close decor shop
+        if (Keyboard.current.pKey.wasPressedThisFrame)
         {   
             PlaySound();
             shopController.populateDecor();
         }
 
-        // Press U to open/ close upgrade shop
-        if (Keyboard.current.uKey.wasPressedThisFrame)
-        {   
-            PlaySound();
-            shopController.populateUpgrade();
-        }
+        // // Press U to open/ close upgrade shop
+        // if (Keyboard.current.uKey.wasPressedThisFrame)
+        // {   
+        //     PlaySound();
+        //     shopController.populateUpgrade();
+        // }
     }
 
     private void PlaySound()

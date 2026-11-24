@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShopItem
   itemName: Chandelier
   itemImage: {fileID: 0}
-  itemGO: {fileID: 919132149155446097, guid: 097d3628e48554e4ebf4d73133b29043, type: 3}
+  itemGO: {fileID: 4672755797625420958, guid: f2fd3e9b7c04474419155138a194c02c, type: 3}
   itemPosition: {fileID: 3921495569050029071, guid: b7e34a66c08ffdb49a3d146966599778, type: 3}
   itemLayer: 
   itemCost: 500

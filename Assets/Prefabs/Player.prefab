@@ -215,7 +215,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3030557727445417384
 Transform:
   m_ObjectHideFlags: 0
@@ -397,7 +397,7 @@ MonoBehaviour:
   raycastLayers:
     serializedVersion: 2
     m_Bits: 128
-  canInteract: 0
+  shopController: {fileID: 0}
 --- !u!81 &1545150042649741503
 AudioListener:
   m_ObjectHideFlags: 0

@@ -9,6 +9,7 @@ public class Interactable : MonoBehaviour
     [Tooltip("Choose what objects get hit by raycast")]
     [SerializeField] private LayerMask raycastLayers;
     private RaycastHit hit;
+    [SerializeField] ShopController shopController;
 
     // Used in player movement 'on interact' to determine if the raycast
     // intersects with an interactable 
@@ -32,38 +33,42 @@ public class Interactable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // reset to null on every frame 
-        IInteractable interactable = null;
-        
-        // Does the ray intersect the interactables layer?
-        if (Physics.Raycast(transform.position, transform.forward, out hit, 100f, raycastLayers))
+        // only do this if the game is not paused
+        if (shopController == null || !shopController.isPaused)
         {
-            // draw to debug
-            // Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
-        
-            // get the interactable interface from the hit object 
-            interactable = hit.collider.GetComponent<IInteractable>();
-
-            // communicate to player that they can interact with the hit object
-            if (interactable != null)
+            // reset to null on every frame 
+            IInteractable interactable = null;
+            
+            // Does the ray intersect the interactables layer?
+            if (Physics.Raycast(transform.position, transform.forward, out hit, 100f, raycastLayers))
             {
-                Debug.Log(hit.collider.name); // uncomment to see what interactable the raycast hit
+                // draw to debug
+                // Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
+            
+                // get the interactable interface from the hit object 
+                interactable = hit.collider.GetComponent<IInteractable>();
 
-                interactable.Hover(hit.point); 
-                UIText.text = interactable.InteractionText;
-
-                // while player is looking at interactble, interact on pressing 'e'
-                // or click with left mouse
-                if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.E))
+                // communicate to player that they can interact with the hit object
+                if (interactable != null)
                 {
-                    interactable.Interact(hit.point);
-                    // canInteract = false;
-                }
-            }   
-        }
-        else
-        {
-            // UIText.text = " ";
+                    // Debug.Log(hit.collider.name); // uncomment to see what interactable the raycast hit
+
+                    interactable.Hover(hit.point); 
+                    UIText.text = interactable.InteractionText;
+
+                    // while player is looking at interactble, interact on pressing 'e'
+                    // or click with left mouse
+                    if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.E))
+                    {
+                        interactable.Interact(hit.point);
+                        // canInteract = false;
+                    }
+                }   
+            }
+            else
+            {
+                // UIText.text = " ";
+            }
         }
     }
 }

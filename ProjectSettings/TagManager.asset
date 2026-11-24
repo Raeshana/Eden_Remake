@@ -20,6 +20,7 @@ TagManager:
   - Undefined
   - other_pan
   - pan_n
+  - Grid
   layers:
   - Default
   - TransparentFX

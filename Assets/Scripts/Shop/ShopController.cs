@@ -24,7 +24,8 @@ public class ShopController : MonoBehaviour
     private MoneyController moneyController;
     private GameObject playerGO;
     private Stat hungerStat;
-    private Stat satisfactionStat;
+    // private Stat satisfactionStat;
+    private float actualStat;
 
     private int pageNum;
     public bool isPaused;
@@ -38,7 +39,8 @@ public class ShopController : MonoBehaviour
         // Find the player and their stats
         playerGO = GameObject.FindWithTag("Player");
         hungerStat = playerGO.GetComponent<HungerStat>();
-        satisfactionStat = playerGO.GetComponent<SatisfactionStat>();
+        actualStat = hungerStat.statDecrease;
+        // satisfactionStat = playerGO.GetComponent<SatisfactionStat>();
 
         // Separate decor and upgrade items
         // int decorNum = 0;
@@ -101,7 +103,7 @@ public class ShopController : MonoBehaviour
     /// Does not pause timers on stats
     /// Toggles mouse cursor as well
     /// </summary>
-    private void toggleShop()
+    public void toggleShop()
     {
         // Debug.Log("Shop callback called");
         isPaused = !isPaused;
@@ -109,6 +111,7 @@ public class ShopController : MonoBehaviour
         Cursor.lockState = isPaused ? CursorLockMode.None : CursorLockMode.Locked;
         Cursor.visible = isPaused;
         crossHairs.SetActive(!isPaused);
+        // hungerStat.statDecrease = isPaused ? 0 : actualStat;
         // if (isPaused == true) Debug.Log("Paused");
         // else Debug.Log("Unpaused");
     }

@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShopItem
   itemName: Placeholder
   itemImage: {fileID: 0}
-  itemGO: {fileID: 0}
+  itemGO: {fileID: 8857733575345778149, guid: 55af314280ce96447879b7a110a26869, type: 3}
+  itemPosition: {fileID: 0}
+  itemLayer: 
   itemCost: 0
   toolTip: Placeholder
   isUpgrade: 0

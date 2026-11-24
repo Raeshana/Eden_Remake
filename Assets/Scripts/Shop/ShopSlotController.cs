@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class ShopSlotController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    private GameObject shopControllerGO;
+    private ShopController shopController;
     private MoneyController moneyController;
 
     [Header("Reference the shop slot prefab children here")]
@@ -17,7 +17,9 @@ public class ShopSlotController : MonoBehaviour, IPointerEnterHandler, IPointerE
 
     private GameObject playerGO;
     private Stat hungerStat;
-    private Stat satisfactionStat;
+    // private Stat satisfactionStat;
+
+    private GridInteractable grid;
 
     [Header("Shopitem prefab used for debugging")]
     [SerializeField] ShopItem shopItemPopulated;
@@ -28,11 +30,25 @@ public class ShopSlotController : MonoBehaviour, IPointerEnterHandler, IPointerE
         // Find the money controller
         // shopControllerGO = GameObject.FindWithTag("ShopController");
         moneyController = GameObject.FindWithTag("MoneyController").GetComponent<MoneyController>();
+        shopController = GameObject.FindWithTag("ShopController").GetComponent<ShopController>();
 
         // Find the player and their stats
         playerGO = GameObject.FindWithTag("Player");
         hungerStat = playerGO.GetComponent<HungerStat>();
-        satisfactionStat = playerGO.GetComponent<SatisfactionStat>();
+        // satisfactionStat = playerGO.GetComponent<SatisfactionStat>();
+
+        // get grid
+        grid = GameObject.FindWithTag("Grid").GetComponent<GridInteractable>();
+    }
+
+    void Update()
+    {
+        if (grid.isPlaced == true)
+        {
+            // turn shop back on
+            shopController.toggleShop();
+            grid.isPlaced = false;
+        }
     }
 
     /// <summary>
@@ -65,8 +81,16 @@ public class ShopSlotController : MonoBehaviour, IPointerEnterHandler, IPointerE
 
     private void PlaceItem()
     {
-        Instantiate(shopItemPopulated.itemGO, shopItemPopulated.itemPosition);
-        // GameObject.FindWithTag(shopItemPopulated.itemLayer).SetActive(true);
+        // Debug.Log("Trying to place item");
+        // turn off shop
+        shopController.toggleShop();
+
+        // turn on grid 
+        grid.EnterPlaceMode();
+        
+        // ref bought object
+        // grid.cube = shopItemPopulated.itemGO;
+        grid.blockPrefab = shopItemPopulated.itemGO;
     }
 
     /// <summary>
@@ -88,7 +112,7 @@ public class ShopSlotController : MonoBehaviour, IPointerEnterHandler, IPointerE
     public void OnPointerEnter(PointerEventData pointerEventData)
     {
         //Output to console the GameObject's name and the following message
-        Debug.Log("Cursor Entering " + name + " GameObject");
+        // Debug.Log("Cursor Entering " + name + " GameObject");
         toolTip.gameObject.SetActive(true);
     }
 
@@ -97,7 +121,7 @@ public class ShopSlotController : MonoBehaviour, IPointerEnterHandler, IPointerE
     public void OnPointerExit(PointerEventData pointerEventData)
     {
         //Output to console the GameObject's name and the following message
-        Debug.Log("Cursor Entering " + name + " GameObject");
+        // Debug.Log("Cursor Entering " + name + " GameObject");
         toolTip.gameObject.SetActive(false);
     }
 }
