@@ -63,12 +63,15 @@ public class DeerAI : MonoBehaviour
                     moveDist = Vector3.Distance(lastMovePoint.position, currMovePoint.position);
                     // reaset start time move
                     startTimeMove = Time.time;
+
+                    // make deer rotate as they float
+                    StartCoroutine(LerpRotation(Quaternion.Euler(new Vector3(GetAngle(),GetAngle(),GetAngle())), 10));
                 }
                 break;
             }
             case DeerState.Dead:
                 // play death animation
-                StartCoroutine(LerpRotation(Quaternion.Euler(new Vector3(90,0,0)), 1));
+                // StartCoroutine(LerpRotation(Quaternion.Euler(new Vector3(90,0,0)), 1));
                 break;
 
             case DeerState.Dragged:
@@ -81,10 +84,20 @@ public class DeerAI : MonoBehaviour
     /// Get a random move point
     /// And random time the deer will stay there 
     /// </summary>
-    /// <returns></returns>
+    /// <returns>an index bet. 0 and length-1 inclusive</returns>
     private int GetMovePoint()
     {
         return (int)UnityEngine.Random.Range(0, movePoints.Length-1);
+    }
+
+    /// <summary>
+    /// Get a random angle
+    /// Between 0 and 360
+    /// </summary>
+    /// <returns>an angle bet</returns>
+    private int GetAngle()
+    {
+        return (int)UnityEngine.Random.Range(0, 360);
     }
 
     // https://gamedevbeginner.com/glossary/how-to-lerp-rotation-in-unity/
