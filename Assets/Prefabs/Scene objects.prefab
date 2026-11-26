@@ -934,6 +934,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8993282262570067041}
     m_Modifications:
+    - target: {fileID: 734177923642924362, guid: e57af1079f166f142859a04ea9f690ce, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1040881431532110299, guid: e57af1079f166f142859a04ea9f690ce, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.52
@@ -978,6 +982,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pan
       objectReference: {fileID: 0}
+    - target: {fileID: 9077667941819937527, guid: e57af1079f166f142859a04ea9f690ce, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d8414113386a34750bcfc9141f7a9101, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
