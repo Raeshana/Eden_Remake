@@ -59,8 +59,8 @@ public class ShopSlotController : MonoBehaviour, IPointerEnterHandler, IPointerE
             {
                 hungerStat.DecreaseStatDepletion(shopItemPopulated.saturationModifier);                    
             }
-            // Disable button
-            itemButton.interactable = false; 
+            // Disable button-- the people are against this!
+            // itemButton.interactable = false; 
 
             // In both cases, place item
             PlaceItem();
