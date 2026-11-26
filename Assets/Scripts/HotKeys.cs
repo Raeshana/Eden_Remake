@@ -34,7 +34,15 @@ public class HotKeys : MonoBehaviour
         if (Keyboard.current.pKey.wasPressedThisFrame)
         {   
             PlaySound();
-            shopController.populateDecor();
+            if (shopController.isPaused) // shop on
+            {
+                //turn off shop
+                shopController.ShopOff();
+            }
+            else
+            {
+                shopController.populateDecor();
+            }  
         }
 
         // // Press U to open/ close upgrade shop
@@ -50,8 +58,8 @@ public class HotKeys : MonoBehaviour
         soundManager.Playsfx(soundManager.click);   
     }
 
-    private void OnDisable()
-    {
-        Debug.Log($"{gameObject.name} -> {GetType().Name} was disabled!", this);
-    }
+    // private void OnDisable()
+    // {
+    //     Debug.Log($"{gameObject.name} -> {GetType().Name} was disabled!", this);
+    // }
 }

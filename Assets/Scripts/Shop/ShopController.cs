@@ -67,8 +67,8 @@ public class ShopController : MonoBehaviour
         populateDecor();
 
         // Hide shop when game starts
-        isPaused = true;
-        toggleShop();
+        isPaused = false;
+        ShopOff();
         // if (shopIsOpen == null)
         //     shopIsOpen = new UnityEvent();
 
@@ -81,20 +81,37 @@ public class ShopController : MonoBehaviour
         shopText.text = "Decor Shop";
     }
 
-    public void populateUpgrade()
-    {
-        populateShop(upgradeItems);
-        shopText.text = "Upgrade Shop";
-    }
-
-
     /// <summary>
     /// Called when buttons/ hotkeys are pressed
     /// </summary>
     private void populateShop(List<ShopItem> list)
     {
-        toggleShop();
+        ShopOn();
         loadShopPage(list);
+    }
+
+    /// <summary>
+    /// Is the shop visible or not?
+    /// Pauses game when the player opens the shop
+    /// Does not pause timers on stats
+    /// Toggles mouse cursor as well
+    /// </summary>
+    public void ShopOn()
+    {
+        isPaused = true;
+        gameObject.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        crossHairs.SetActive(false);
+    }
+
+    public void ShopOff()
+    {
+        isPaused = false;
+        gameObject.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        crossHairs.SetActive(true);
     }
 
     /// <summary>
@@ -103,18 +120,18 @@ public class ShopController : MonoBehaviour
     /// Does not pause timers on stats
     /// Toggles mouse cursor as well
     /// </summary>
-    public void toggleShop()
-    {
-        // Debug.Log("Shop callback called");
-        isPaused = !isPaused;
-        gameObject.SetActive(isPaused);
-        Cursor.lockState = isPaused ? CursorLockMode.None : CursorLockMode.Locked;
-        Cursor.visible = isPaused;
-        crossHairs.SetActive(!isPaused);
-        // hungerStat.statDecrease = isPaused ? 0 : actualStat;
-        // if (isPaused == true) Debug.Log("Paused");
-        // else Debug.Log("Unpaused");
-    }
+    // public void toggleShop()
+    // {
+    //     // Debug.Log("Shop callback called");
+    //     isPaused = !isPaused;
+    //     gameObject.SetActive(isPaused);
+    //     Cursor.lockState = isPaused ? CursorLockMode.None : CursorLockMode.Locked;
+    //     Cursor.visible = isPaused;
+    //     crossHairs.SetActive(!isPaused);
+    //     // hungerStat.statDecrease = isPaused ? 0 : actualStat;
+    //     // if (isPaused == true) Debug.Log("Paused");
+    //     // else Debug.Log("Unpaused");
+    // }
 
     /// <summary>
     /// Load shop page, depending on type of shop

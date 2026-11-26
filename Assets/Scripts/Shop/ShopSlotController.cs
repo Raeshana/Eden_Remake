@@ -43,12 +43,6 @@ public class ShopSlotController : MonoBehaviour, IPointerEnterHandler, IPointerE
 
     void Update()
     {
-        if (grid.isPlaced == true)
-        {
-            // turn shop back on
-            shopController.toggleShop();
-            grid.isPlaced = false;
-        }
     }
 
     /// <summary>
@@ -83,7 +77,7 @@ public class ShopSlotController : MonoBehaviour, IPointerEnterHandler, IPointerE
     {
         // Debug.Log("Trying to place item");
         // turn off shop
-        shopController.toggleShop();
+        shopController.ShopOff();
 
         // turn on grid 
         grid.EnterPlaceMode();

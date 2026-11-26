@@ -12,12 +12,14 @@ public class GridInteractable : MonoBehaviour, IInteractable
     public GameObject cube, blockPrefab;
     public Grid grid;
     private state currState;
-    public bool isPlaced;
+
+    private ShopController shopController;
     
     void Awake()
     {
         currState = state.notPlaceMode;
         Debug.Log("Place mode off");
+        shopController = GameObject.FindWithTag("ShopController").GetComponent<ShopController>();
     }
 
     public string InteractionText
@@ -28,7 +30,6 @@ public class GridInteractable : MonoBehaviour, IInteractable
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     public void EnterPlaceMode()
@@ -44,6 +45,7 @@ public class GridInteractable : MonoBehaviour, IInteractable
         {
             case state.placeMode:
                 // Debug.Log("In place mode");
+                // cube.GetComponent<MeshFilter>().mesh = blockPrefab.mesh;
                 text = "Press E to place object";
                 Vector3Int cellPosition = grid.WorldToCell(hitPoint);
                 cube.transform.position = grid.GetCellCenterWorld(cellPosition);
@@ -68,9 +70,10 @@ public class GridInteractable : MonoBehaviour, IInteractable
                 Instantiate(blockPrefab, cube.transform.position, Quaternion.identity);
                 text = "Object placed.";
                 // transition to not place mode
-                isPlaced = true;
                 currState = state.notPlaceMode;
                 Debug.Log("not in place mode anymore");
+                //turn shop back on
+                shopController.ShopOn();
                 break;
             
             case state.notPlaceMode:
