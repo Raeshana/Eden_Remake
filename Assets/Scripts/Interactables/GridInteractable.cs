@@ -18,6 +18,7 @@ public class GridInteractable : MonoBehaviour, IInteractable
     void Awake()
     {
         currState = state.notPlaceMode;
+        cube.SetActive(false);
         Debug.Log("Place mode off");
         shopController = GameObject.FindWithTag("ShopController").GetComponent<ShopController>();
     }
@@ -35,8 +36,10 @@ public class GridInteractable : MonoBehaviour, IInteractable
     public void EnterPlaceMode()
     {
         currState = state.placeMode;
+        cube.SetActive(true);
     }
 
+    // Ref https://youtube.com/shorts/VPPRoNW6TQs?si=E6Ad0sVxuwwpvdZ6
     // interactable
     public void Hover(Vector3 hitPoint)
     {
@@ -66,14 +69,15 @@ public class GridInteractable : MonoBehaviour, IInteractable
         switch (currState)
         {
             case state.placeMode:
-                
+
+                cube.SetActive(false);
                 Instantiate(blockPrefab, cube.transform.position, Quaternion.identity);
-                text = "Object placed.";
+                text = "Placement successful.";
                 // transition to not place mode
                 currState = state.notPlaceMode;
                 Debug.Log("not in place mode anymore");
-                //turn shop back on
-                shopController.ShopOn();
+                //turn shop back on-- I don't like this
+                // shopController.ShopOn();
                 break;
             
             case state.notPlaceMode:
